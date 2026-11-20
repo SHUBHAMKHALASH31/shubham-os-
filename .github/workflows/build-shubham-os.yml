@@ -27,17 +27,20 @@ jobs:
           echo "Khali jagah: ${AVAIL} GB"
           if [ "$AVAIL" -lt 30 ]; then echo "ERROR: Jagah kam hai - build nahi ho payegi"; exit 1; fi
       - name: Install tools
-        run: sudo apt-get update && sudo apt-get install -y squashfs-tools xorriso rsync curl
+        run: sudo apt-get update && sudo apt-get install -y squashfs-tools xorriso rsync curl aria2
       - name: Download latest Kali Live ISO
         run: |
           BASE="https://cdimage.kali.org/current/"
-          ISO_NAME=$(curl -s "$BASE" | grep -oE 'kali-linux-[0-9.]+-live-amd64\.iso' | head -1)
-          echo "Downloading $ISO_NAME"
-          curl -L -o kali-live.iso "$BASE$ISO_NAME"
+          TORRENT=$(curl -s "$BASE" | grep -oE 'kali-linux-[0-9.]+-live-amd64\.iso\.torrent' | head -1)
+          ISO_NAME="${TORRENT%.torrent}"
+          echo "Downloading $ISO_NAME (torrent se - Kali live ISO sirf torrent par milti hai)"
+          curl -sL -o live.torrent "$BASE$TORRENT"
+          aria2c --seed-time=0 --summary-interval=60 --file-allocation=none live.torrent
+          mv "$ISO_NAME" kali-live.iso
           ls -lh kali-live.iso
           SIZE=$(stat -c%s kali-live.iso)
-          if [ "$SIZE" -lt 3000000000 ]; then echo "ERROR: File bahut chhoti hai ($SIZE bytes) - ye ISO nahi, error page lagti hai"; exit 1; fi
-          curl -s -o SHA256SUMS "$BASE/SHA256SUMS"
+          if [ "$SIZE" -lt 3000000000 ]; then echo "ERROR: File bahut chhoti hai ($SIZE bytes) - ISO download nahi hui"; exit 1; fi
+          curl -sL -o SHA256SUMS "$BASE/SHA256SUMS"
           grep "$ISO_NAME" SHA256SUMS | sed "s|$ISO_NAME|kali-live.iso|" | sha256sum -c - || { echo "ERROR: Checksum match nahi hua"; exit 1; }
           echo "Checksum OK - asli Kali ISO hai"
       - name: Remaster into Shubham OS
