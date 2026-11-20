@@ -55,4 +55,3 @@ jobs:
           ls -lh parts/
           gh release delete "v1" --yes --cleanup-tag || true
           gh release create "v1" parts/* --title "Shubham OS v1" --notes "Shubham OS - Dual Mode. SAARE parts aur ShubhamOS-join.bat download karo, sab ek hi folder me rakho, phir join.bat par double-click karo - ShubhamOS.iso ban jayegi."
-          
