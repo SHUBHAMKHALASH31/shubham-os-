@@ -1,6 +1,6 @@
 #!/bin/bash
 # Shubham OS — Windows Mode ON (gehara switch)
-# Undercover look + saare Kali tools menu/settings se gayab.
+# Pehle undercover lagta hai; wo safal ho tabhi tools chhupte hain aur "ON" bulta hai.
 # Data (files) ko koi haath nahi lagta. Wapas: shubham-kali
 
 STATE_FILE="$HOME/.shubham-os-mode"
@@ -16,6 +16,12 @@ if ! command -v kali-undercover >/dev/null 2>&1; then
   exit 1
 fi
 
+# Undercover ko desktop ki sahi pehchan ke saath chalao; fail ho to rukho, jhooth mat bolo
+if ! DESKTOP_SESSION=xfce XDG_CURRENT_DESKTOP=XFCE kali-undercover; then
+  echo "Shubham OS: Windows Mode NAHI lag paya (undercover error). Koi badlav nahi hua."
+  exit 1
+fi
+
 # --- Kali tools ko menu se chhupao (user-level NoDisplay overrides) ---
 APP_DIR="$HOME/.local/share/applications"
 STATE_DIR="$HOME/.config/shubham-os"
@@ -23,7 +29,6 @@ mkdir -p "$APP_DIR" "$STATE_DIR"
 MANIFEST="$STATE_DIR/hidden-apps.txt"
 : > "$MANIFEST"
 
-# Ye normal apps Windows Mode me bhi dikhte rahenge
 keep_app() {
   case "$1" in
     *firefox*|*chromium*|*chrome*|*thunar*|*nautilus*|*mousepad*|*libreoffice*|\
@@ -49,7 +54,6 @@ for f in /usr/share/applications/*.desktop; do
   echo "$base" >> "$MANIFEST"
 done
 
-kali-undercover
 echo "windows" > "$STATE_FILE"
 xfce4-panel -r >/dev/null 2>&1 &
 echo "Shubham OS: Windows Mode ON — Kali tools menu se gayab. Wapas ke liye: shubham-kali"
