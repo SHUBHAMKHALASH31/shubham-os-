@@ -1,1 +1,8 @@
-IyBHUlVCIC8gQm9vdCBicmFuZGluZyAoYnVpbGQgdGltZSBwYXIgYXBwbHkgaG9nYSkKLSBNZW51IHRpdGxlOiBTaHViaGFtIE9TCi0gRW50cmllczoKICAxLiBTaHViaGFtIE9TIOKAlCBMaXZlIChXaW5kb3dzIE1vZGUpCiAgMi4gU2h1YmhhbSBPUyDigJQgTGl2ZSAoS2FsaSBNb2RlKQogIDMuIFNodWJoYW0gT1Mg4oCUIEluc3RhbGwKLSBCYWNrZ3JvdW5kOiBsb2dvIHdhbGkgZGFyayBpbWFnZSAoZmlsZXMvIG1lIHNodWJoYW0tb3MtbG9nbykKLSBUaW1lb3V0OiAxMCBzZWMsIGRlZmF1bHQgPSBMaXZlIChXaW5kb3dzIE1vZGUpCg==
+# GRUB / Boot branding (build time par apply hoga)
+- Menu title: Shubham OS
+- Entries:
+  1. Shubham OS — Live (Windows Mode)
+  2. Shubham OS — Live (Kali Mode)
+  3. Shubham OS — Install
+- Background: logo wali dark image (files/ me shubham-os-logo)
+- Timeout: 10 sec, default = Live (Windows Mode)
