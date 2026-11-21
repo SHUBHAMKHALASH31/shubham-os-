@@ -16,6 +16,19 @@ if ! command -v kali-undercover >/dev/null 2>&1; then
   exit 1
 fi
 
+# Undercover ka apna check hai: xfconfd + xfce4-panel dono chalte hone chahiye.
+# Ek bhi band ho to wo "only works on Xfce desktop" bolke ruk jata hai — pehle dono ko pakka karo.
+ensure_xfce_processes() {
+  if ! pgrep -u "$(id -un)" xfconfd >/dev/null 2>&1; then
+    (xfconfd >/dev/null 2>&1 &)
+  fi
+  if ! pgrep -u "$(id -un)" xfce4-panel >/dev/null 2>&1; then
+    (nohup xfce4-panel >/dev/null 2>&1 &)
+  fi
+  sleep 1
+}
+ensure_xfce_processes
+
 # Undercover ko desktop ki sahi pehchan ke saath chalao; fail ho to rukho, jhooth mat bolo
 if ! DESKTOP_SESSION=xfce XDG_CURRENT_DESKTOP=XFCE kali-undercover; then
   echo "Shubham OS: Windows Mode NAHI lag paya (undercover error). Koi badlav nahi hua."
