@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=ShubhamOS Update
+Comment=Shubham OS ke updates check aur install karo
+Exec=/usr/local/bin/shubham-update
+Icon=shubham-os-logo
+Terminal=false
+Categories=System;Settings;
