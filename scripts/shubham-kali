@@ -1,23 +1,31 @@
 #!/bin/bash
-# Shubham OS — Kali Mode wapas ON karne ki command
-# Windows Mode se bahar nikal kar pura Kali look wapas lata hai.
-# Windows look ke liye: shubham-windows
+# Shubham OS — Kali Mode wapas ON
+# Windows Mode me chhupaye gaye saare tools wapas dikhne lagenge.
 
 STATE_FILE="$HOME/.shubham-os-mode"
 CURRENT="kali"
 [ -f "$STATE_FILE" ] && CURRENT=$(cat "$STATE_FILE")
-
 if [ "$CURRENT" != "windows" ]; then
   echo "Shubham OS: system pehle se Kali Mode me hai."
   exit 0
 fi
-
 if ! command -v kali-undercover >/dev/null 2>&1; then
   echo "kali-undercover nahi mila. Pehle ye chalao:"
   echo "sudo apt update && sudo apt install -y kali-undercover"
   exit 1
 fi
 
+# --- Chhupaye gaye tools wapas lao ---
+APP_DIR="$HOME/.local/share/applications"
+MANIFEST="$HOME/.config/shubham-os/hidden-apps.txt"
+if [ -f "$MANIFEST" ]; then
+  while IFS= read -r base; do
+    [ -n "$base" ] && rm -f "$APP_DIR/$base"
+  done < "$MANIFEST"
+  rm -f "$MANIFEST"
+fi
+
 kali-undercover
 echo "kali" > "$STATE_FILE"
-echo "Shubham OS: Kali Mode ON ho gaya. Windows look ke liye: shubham-windows"
+xfce4-panel -r >/dev/null 2>&1 &
+echo "Shubham OS: Kali Mode ON — saare tools wapas. Windows look ke liye: shubham-windows"
