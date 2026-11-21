@@ -19,6 +19,19 @@ if [ -f "$MANIFEST" ]; then
   rm -f "$MANIFEST"
 fi
 
+# Undercover ka apna check hai: xfconfd + xfce4-panel dono chalte hone chahiye.
+# Ek bhi band ho to wo "only works on Xfce desktop" bolke ruk jata hai — pehle dono ko pakka karo.
+ensure_xfce_processes() {
+  if ! pgrep -u "$(id -un)" xfconfd >/dev/null 2>&1; then
+    (xfconfd >/dev/null 2>&1 &)
+  fi
+  if ! pgrep -u "$(id -un)" xfce4-panel >/dev/null 2>&1; then
+    (nohup xfce4-panel >/dev/null 2>&1 &)
+  fi
+  sleep 1
+}
+ensure_xfce_processes
+
 if command -v kali-undercover >/dev/null 2>&1; then
   DESKTOP_SESSION=xfce XDG_CURRENT_DESKTOP=XFCE kali-undercover || echo "(undercover band karne me error — tools phir bhi wapas aa gaye hain)"
 fi
