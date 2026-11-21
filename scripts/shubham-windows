@@ -1,1 +1,23 @@
-IyEvYmluL2Jhc2gKIyBTaHViaGFtIE9TIOKAlCBXaW5kb3dzIE1vZGUgT04ga2FybmUga2kgY29tbWFuZAojIEthbGkga2UgdW5kZXJjb3ZlciBlbmdpbmUga28gdXNlIGthcmtlIGRlc2t0b3Aga28gV2luZG93cyBqYWlzYSBiYW5hdGEgaGFpLgojIFdhcGFzIGphYW5lIGtlIGxpeWU6IHNodWJoYW0ta2FsaQoKU1RBVEVfRklMRT0iJEhPTUUvLnNodWJoYW0tb3MtbW9kZSIKQ1VSUkVOVD0ia2FsaSIKWyAtZiAiJFNUQVRFX0ZJTEUiIF0gJiYgQ1VSUkVOVD0kKGNhdCAiJFNUQVRFX0ZJTEUiKQoKaWYgWyAiJENVUlJFTlQiID0gIndpbmRvd3MiIF07IHRoZW4KICBlY2hvICJTaHViaGFtIE9TOiBzeXN0ZW0gcGVobGUgc2UgV2luZG93cyBNb2RlIG1lIGhhaS4iCiAgZXhpdCAwCmZpCgppZiAhIGNvbW1hbmQgLXYga2FsaS11bmRlcmNvdmVyID4vZGV2L251bGwgMj4mMTsgdGhlbgogIGVjaG8gImthbGktdW5kZXJjb3ZlciBuYWhpIG1pbGEuIFBlaGxlIHllIGNoYWxhbzoiCiAgZWNobyAic3VkbyBhcHQgdXBkYXRlICYmIHN1ZG8gYXB0IGluc3RhbGwgLXkga2FsaS11bmRlcmNvdmVyIgogIGV4aXQgMQpmaQoKa2FsaS11bmRlcmNvdmVyCmVjaG8gIndpbmRvd3MiID4gIiRTVEFURV9GSUxFIgplY2hvICJTaHViaGFtIE9TOiBXaW5kb3dzIE1vZGUgT04gaG8gZ2F5YS4gV2FwYXMgS2FsaSBsb29rIGtlIGxpeWU6IHNodWJoYW0ta2FsaSIK
+#!/bin/bash
+# Shubham OS — Windows Mode ON karne ki command
+# Kali ke undercover engine ko use karke desktop ko Windows jaisa banata hai.
+# Wapas jaane ke liye: shubham-kali
+
+STATE_FILE="$HOME/.shubham-os-mode"
+CURRENT="kali"
+[ -f "$STATE_FILE" ] && CURRENT=$(cat "$STATE_FILE")
+
+if [ "$CURRENT" = "windows" ]; then
+  echo "Shubham OS: system pehle se Windows Mode me hai."
+  exit 0
+fi
+
+if ! command -v kali-undercover >/dev/null 2>&1; then
+  echo "kali-undercover nahi mila. Pehle ye chalao:"
+  echo "sudo apt update && sudo apt install -y kali-undercover"
+  exit 1
+fi
+
+kali-undercover
+echo "windows" > "$STATE_FILE"
+echo "Shubham OS: Windows Mode ON ho gaya. Wapas Kali look ke liye: shubham-kali"
