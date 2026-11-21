@@ -1,1 +1,20 @@
-IyDwn5GRIFNodWJoYW0gT1Mg4oCUIER1YWwgTW9kZQoKKipFayBPUywgZG8gbW9kZToqKgotICoqV2luZG93cyBNb2RlKiog4oCUIFdpbmRvd3MgamFpc2Egc2FhZiBsb29rLCBoYWxraSB0aGVtZSwgZ29sZGVuIHNoaWVsZAotICoqS2FsaSBNb2RlKiog4oCUIHB1cmEgS2FsaSBMaW51eCwgc2FhcmUgdG9vbHMsIGRhcmsgdGhlbWUKCkVrIGNvbW1hbmQgc2UgbW9kZSBiYWRsbzogYHNodWJoYW0td2luZG93c2AgfCBgc2h1YmhhbS1rYWxpYAoKIyMgRG93bmxvYWQKSVNPICoqUmVsZWFzZXMqKiBtZSBtaWxlZ2kgKGt1Y2ggaGlzc28gbWUg4oCUIEdpdEh1YiAyIEdCIHNlIGJhZGkgZmlsZSBuYWhpIGxldGEpLgpTYWFyZSBwYXJ0ICsgKipTaHViaGFtT1Mtam9pbi5iYXQqKiBkb3dubG9hZCBrYXJvLCBzYWIgZWsgaGkgZm9sZGVyIG1lIHJha2hvLApwaGlyIGpvaW4uYmF0IHBhciAqKmRvdWJsZS1jbGljayoqIGthcm8g4oCUIFNodWJoYW1PUy5pc28gdGFpeWFyIGhvIGpheWVnaS4KCiMjIElTTyBrYWlzZSBiYW50aSBoYWkKR2l0SHViIEFjdGlvbnMga2EgY29tcHV0ZXIgS2FsaSBrYSBMaXZlIElTTyBrbyBraG9sIGthciBTaHViaGFtIE9TIGthCmJyYW5kaW5nIChuYWFtLCB3YWxscGFwZXIsIGxvZ28sIHRvZ2dsZSBjb21tYW5kcykgZGFhbCBrYXIgbmF5aSBJU08KYmFuYXRhIGhhaSDigJQgYHJlbWFzdGVyLXNodWJoYW0tb3Muc2hgLgpQdXJpIHByb2Zlc3Npb25hbCBidWlsZCBrZSBsaXllIGBidWlsZC1zaHViaGFtLW9zLnNoYCAoS2FsaSBsaXZlLWJ1aWxkKS4KCl9CeSBTaHViaGFtXwo=
+# 👑 Shubham OS — Dual Mode
+
+**Ek OS, do mode:**
+- **Windows Mode** — Windows jaisa saaf look, halki theme, golden shield
+- **Kali Mode** — pura Kali Linux, saare tools, dark theme
+
+Ek command se mode badlo: `shubham-windows` | `shubham-kali`
+
+## Download
+ISO **Releases** me milegi (kuch hisso me — GitHub 2 GB se badi file nahi leta).
+Saare part + **ShubhamOS-join.bat** download karo, sab ek hi folder me rakho,
+phir join.bat par **double-click** karo — ShubhamOS.iso taiyar ho jayegi.
+
+## ISO kaise banti hai
+GitHub Actions ka computer Kali ki Live ISO ko khol kar Shubham OS ka
+branding (naam, wallpaper, logo, toggle commands) daal kar nayi ISO
+banata hai — `remaster-shubham-os.sh`.
+Puri professional build ke liye `build-shubham-os.sh` (Kali live-build).
+
+_By Shubham_
