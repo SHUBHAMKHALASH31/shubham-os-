@@ -1,1 +1,79 @@
-IyEvYmluL2Jhc2gKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyAgU0hVQkhBTSBPUyDigJQgT25lLVNob3QgQnVpbGQgU2NyaXB0CiMgIEthbGkgTGludXggcGFyIGNoYWxhbyDigJQgeWUgc2NyaXB0IGtodWQ6CiMgICAgMSkgbGl2ZS1idWlsZCBpbnN0YWxsIGthcmVnaQojICAgIDIpIEthbGkga2Egb2ZmaWNpYWwgbGl2ZS1idWlsZCBjb25maWcgbGVnaQojICAgIDMpIFNodWJoYW0gT1Mga2EgYnJhbmRpbmcsIHdhbGxwYXBlciwgdG9nZ2xlIGNvbW1hbmRzIGpvZGVnaQojICAgIDQpIElTTyBiYW5heWVnaSAoTGl2ZSArIEluc3RhbGwgZG9ubyB3YWxpKQojICBaYXJvb3JhdDogS2FsaSBtYWNoaW5lL1ZNLCBpbnRlcm5ldCwgfjI1IEdCIGtoYWxpIGphZ2FoLAojICAgICAgICAgICAgIGF1ciBzYW1heSAocGVobGkgYnVpbGQgbWUgMS0zIGdoYW50ZSBsYWcgc2FrdGUgaGFpKQojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpzZXQgLWUKY2QgIiQoZGlybmFtZSAiJDAiKSIKCmVjaG8gIj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IgplY2hvICIgIFNIVUJIQU0gT1MgQlVJTEQgU0hVUlUgSE8gUkFIQSBIQUkiCmVjaG8gIj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IgoKIyAtLS0gQ2hlY2s6IEthbGkvRGViaWFuIGhhaSB5YSBuYWhpIC0tLQppZiAhIGNvbW1hbmQgLXYgYXB0ID4vZGV2L251bGwgMj4mMTsgdGhlbgogIGVjaG8gIkVSUk9SOiBZZSBzY3JpcHQgc2lyZiBLYWxpL0RlYmlhbiBwYXIgY2hhbGVnaS4iCiAgZXhpdCAxCmZpCgojIC0tLSBTdGVwIDE6IFRvb2xzIGluc3RhbGwgLS0tCmVjaG8gIlsxLzVdIGxpdmUtYnVpbGQgYXVyIGdpdCBpbnN0YWxsIGhvIHJhaGEgaGFpLi4uIgpzdWRvIGFwdCB1cGRhdGUKc3VkbyBhcHQgaW5zdGFsbCAteSBsaXZlLWJ1aWxkIGdpdAoKIyAtLS0gU3RlcCAyOiBLYWxpIGthIG9mZmljaWFsIGJ1aWxkIGNvbmZpZyAtLS0KZWNobyAiWzIvNV0gS2FsaSBsaXZlLWJ1aWxkIGNvbmZpZyBkb3dubG9hZCBobyByYWhhIGhhaS4uLiIKaWYgWyAhIC1kICJzaHViaGFtLW9zLWJ1aWxkIiBdOyB0aGVuCiAgZ2l0IGNsb25lIGh0dHBzOi8vZ2l0bGFiLmNvbS9rYWxpbGludXgvYnVpbGQtc2NyaXB0cy9saXZlLWJ1aWxkLWNvbmZpZy5naXQgc2h1YmhhbS1vcy1idWlsZApmaQpjZCBzaHViaGFtLW9zLWJ1aWxkClBBQ0tfRElSPSIkKGNkIC4uICYmIHB3ZCkiCiMgSW1hZ2VzIGJhc2U2NCBtZSBhYXlpIGhvIHRvIFBORyBiYW5hIGxvIChHaXRIdWIgdGV4dC1wdXNoIGtlIGxpeWUpCmZvciBCNjQgaW4gaW1hZ2VzLyouYjY0OyBkbyBbIC1mICIkQjY0IiBdICYmIGJhc2U2NCAtZCAiJEI2NCIgPiAiJHtCNjQlLmI2NH0iOyBkb25lCgojIC0tLSBTdGVwIDM6IEFwbmEgc2FtYWFuIHNhaGkgamFnYWggcGFyIC0tLQplY2hvICJbMy81XSBTaHViaGFtIE9TIGthIGJyYW5kaW5nIGpvZGEgamEgcmFoYSBoYWkuLi4iCklOQz0ia2FsaS1jb25maWcvY29tbW9uL2luY2x1ZGVzLmNocm9vdCIKbWtkaXIgLXAgIiRJTkMvdXNyL3NoYXJlL2JhY2tncm91bmRzL3NodWJoYW0tb3MiCm1rZGlyIC1wICIkSU5DL3Vzci9zaGFyZS9waXhtYXBzIgpta2RpciAtcCAiJElOQy91c3IvbG9jYWwvYmluIgpta2RpciAtcCAiJElOQy9ldGMiCm1rZGlyIC1wICIkSU5DL3Vzci9saWIiCgpjcCAiJFBBQ0tfRElSL2ltYWdlcy93YWxscGFwZXIta2FsaS1tb2RlLmpwZyIgICAgIiRJTkMvdXNyL3NoYXJlL2JhY2tncm91bmRzL3NodWJoYW0tb3MvIgpjcCAiJFBBQ0tfRElSL2ltYWdlcy93YWxscGFwZXItd2luZG93cy1tb2RlLmpwZyIgIiRJTkMvdXNyL3NoYXJlL2JhY2tncm91bmRzL3NodWJoYW0tb3MvIgpjcCAiJFBBQ0tfRElSL2ltYWdlcy9zaHViaGFtLW9zLWxvZ28uanBnIiAgICAgICAgIiRJTkMvdXNyL3NoYXJlL3BpeG1hcHMvIgpjcCAiJFBBQ0tfRElSL3NjcmlwdHMvc2h1YmhhbS13aW5kb3dzIiAgICAgICAgICAgIiRJTkMvdXNyL2xvY2FsL2Jpbi8iCmNwICIkUEFDS19ESVIvc2NyaXB0cy9zaHViaGFtLWthbGkiICAgICAgICAgICAgICAiJElOQy91c3IvbG9jYWwvYmluLyIKY2htb2QgK3ggIiRJTkMvdXNyL2xvY2FsL2Jpbi9zaHViaGFtLXdpbmRvd3MiICIkSU5DL3Vzci9sb2NhbC9iaW4vc2h1YmhhbS1rYWxpIgpjcCAiJFBBQ0tfRElSL2JyYW5kaW5nL29zLXJlbGVhc2UiICIkSU5DL2V0Yy9vcy1yZWxlYXNlIgpjcCAiJFBBQ0tfRElSL2JyYW5kaW5nL29zLXJlbGVhc2UiICIkSU5DL3Vzci9saWIvb3MtcmVsZWFzZSIKY3AgIiRQQUNLX0RJUi9icmFuZGluZy9ob3N0bmFtZSIgICAiJElOQy9ldGMvaG9zdG5hbWUiCmNwICIkUEFDS19ESVIvYnJhbmRpbmcvbW90ZCIgICAgICAgIiRJTkMvZXRjL21vdGQiCgojIFBhY2thZ2UgbGlzdCAoWEZDRSB2YXJpYW50IG1lLCBuYSBtaWxlIHRvIGNvbW1vbiBtZSkKaWYgWyAtZCAia2FsaS1jb25maWcvdmFyaWFudC14ZmNlL3BhY2thZ2UtbGlzdHMiIF07IHRoZW4KICBjcCAiJFBBQ0tfRElSL2xpdmUtY29uZmlnL3NodWJoYW0ubGlzdC5jaHJvb3QiICJrYWxpLWNvbmZpZy92YXJpYW50LXhmY2UvcGFja2FnZS1saXN0cy8iCmVsc2UKICBta2RpciAtcCAia2FsaS1jb25maWcvY29tbW9uL3BhY2thZ2UtbGlzdHMiCiAgY3AgIiRQQUNLX0RJUi9saXZlLWNvbmZpZy9zaHViaGFtLmxpc3QuY2hyb290IiAia2FsaS1jb25maWcvY29tbW9uL3BhY2thZ2UtbGlzdHMvIgpmaQoKIyAtLS0gU3RlcCA0OiBJU08gYnVpbGQgLS0tCmVjaG8gIls0LzVdIElTTyBiYW4gcmFoaSBoYWkuLi4gaXNtZSBzYW1heSBsYWdlZ2EsIG1hY2hpbmUgYmFuZCBtYXQga2FybmEuIgouL2J1aWxkLnNoIC0tdmVyYm9zZSAtLXZhcmlhbnQgeGZjZSB8fCAuL2J1aWxkLnNoIC0tdmVyYm9zZQoKIyAtLS0gU3RlcCA1OiBSZXN1bHQgLS0tCmVjaG8gIls1LzVdIEJ1aWxkIGtoYXRtISIKZWNobyAiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0iCmVjaG8gIiAgU0hVQkhBTSBPUyBraSBJU08geWFoYSBtaWxlZ2k6IgpscyAtbGggaW1hZ2VzLyouaXNvIDI+L2Rldi9udWxsIHx8IGZpbmQgLiAtbmFtZSAiKi5pc28iIC1leGVjIGxzIC1saCB7fSBcOwplY2hvICIgIElzIElTTyBrbyBWTXdhcmUgbWUgYm9vdCBrYXJrZSBMaXZlIGNoYWxhbywiCmVjaG8gIiAgeWEgSW5zdGFsbCBrYXJrZSB0cnkga2Fyby4gQmFkaGFpIGhvISIKZWNobyAiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0iCg==
+#!/bin/bash
+# ============================================================
+#  SHUBHAM OS — One-Shot Build Script
+#  Kali Linux par chalao — ye script khud:
+#    1) live-build install karegi
+#    2) Kali ka official live-build config legi
+#    3) Shubham OS ka branding, wallpaper, toggle commands jodegi
+#    4) ISO banayegi (Live + Install dono wali)
+#  Zaroorat: Kali machine/VM, internet, ~25 GB khali jagah,
+#             aur samay (pehli build me 1-3 ghante lag sakte hai)
+# ============================================================
+set -e
+cd "$(dirname "$0")"
+
+echo "==============================================="
+echo "  SHUBHAM OS BUILD SHURU HO RAHA HAI"
+echo "==============================================="
+
+# --- Check: Kali/Debian hai ya nahi ---
+if ! command -v apt >/dev/null 2>&1; then
+  echo "ERROR: Ye script sirf Kali/Debian par chalegi."
+  exit 1
+fi
+
+# --- Step 1: Tools install ---
+echo "[1/5] live-build aur git install ho raha hai..."
+sudo apt update
+sudo apt install -y live-build git
+
+# --- Step 2: Kali ka official build config ---
+echo "[2/5] Kali live-build config download ho raha hai..."
+if [ ! -d "shubham-os-build" ]; then
+  git clone https://gitlab.com/kalilinux/build-scripts/live-build-config.git shubham-os-build
+fi
+cd shubham-os-build
+PACK_DIR="$(cd .. && pwd)"
+# Images base64 me aayi ho to PNG bana lo (GitHub text-push ke liye)
+for B64 in images/*.b64; do [ -f "$B64" ] && base64 -d "$B64" > "${B64%.b64}"; done
+
+# --- Step 3: Apna samaan sahi jagah par ---
+echo "[3/5] Shubham OS ka branding joda ja raha hai..."
+INC="kali-config/common/includes.chroot"
+mkdir -p "$INC/usr/share/backgrounds/shubham-os"
+mkdir -p "$INC/usr/share/pixmaps"
+mkdir -p "$INC/usr/local/bin"
+mkdir -p "$INC/etc"
+mkdir -p "$INC/usr/lib"
+
+cp "$PACK_DIR/images/wallpaper-kali-mode.jpg"    "$INC/usr/share/backgrounds/shubham-os/"
+cp "$PACK_DIR/images/wallpaper-windows-mode.jpg" "$INC/usr/share/backgrounds/shubham-os/"
+cp "$PACK_DIR/images/shubham-os-logo.jpg"        "$INC/usr/share/pixmaps/"
+cp "$PACK_DIR/scripts/shubham-windows"           "$INC/usr/local/bin/"
+cp "$PACK_DIR/scripts/shubham-kali"              "$INC/usr/local/bin/"
+chmod +x "$INC/usr/local/bin/shubham-windows" "$INC/usr/local/bin/shubham-kali"
+cp "$PACK_DIR/branding/os-release" "$INC/etc/os-release"
+cp "$PACK_DIR/branding/os-release" "$INC/usr/lib/os-release"
+cp "$PACK_DIR/branding/hostname"   "$INC/etc/hostname"
+cp "$PACK_DIR/branding/motd"       "$INC/etc/motd"
+
+# Package list (XFCE variant me, na mile to common me)
+if [ -d "kali-config/variant-xfce/package-lists" ]; then
+  cp "$PACK_DIR/live-config/shubham.list.chroot" "kali-config/variant-xfce/package-lists/"
+else
+  mkdir -p "kali-config/common/package-lists"
+  cp "$PACK_DIR/live-config/shubham.list.chroot" "kali-config/common/package-lists/"
+fi
+
+# --- Step 4: ISO build ---
+echo "[4/5] ISO ban rahi hai... isme samay lagega, machine band mat karna."
+./build.sh --verbose --variant xfce || ./build.sh --verbose
+
+# --- Step 5: Result ---
+echo "[5/5] Build khatm!"
+echo "==============================================="
+echo "  SHUBHAM OS ki ISO yaha milegi:"
+ls -lh images/*.iso 2>/dev/null || find . -name "*.iso" -exec ls -lh {} \;
+echo "  Is ISO ko VMware me boot karke Live chalao,"
+echo "  ya Install karke try karo. Badhai ho!"
+echo "==============================================="
