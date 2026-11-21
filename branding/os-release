@@ -1,1 +1,9 @@
-UFJFVFRZX05BTUU9IlNodWJoYW0gT1MgMS4wIgpOQU1FPSJTaHViaGFtIE9TIgpWRVJTSU9OX0lEPSIxLjAiClZFUlNJT049IjEuMCIKSUQ9c2h1YmhhbQpJRF9MSUtFPSJkZWJpYW4ga2FsaSIKSE9NRV9VUkw9Imh0dHBzOi8vc2h1YmhhbWtoYWxhc2gzMS5naXRodWIuaW8vIgpTVVBQT1JUX1VSTD0iaHR0cHM6Ly9zaHViaGFta2hhbGFzaDMxLmdpdGh1Yi5pby8iCkJVR19SRVBPUlRfVVJMPSJodHRwczovL3NodWJoYW1raGFsYXNoMzEuZ2l0aHViLmlvLyIK
+PRETTY_NAME="Shubham OS 1.0"
+NAME="Shubham OS"
+VERSION_ID="1.0"
+VERSION="1.0"
+ID=shubham
+ID_LIKE="debian kali"
+HOME_URL="https://shubhamkhalash31.github.io/"
+SUPPORT_URL="https://shubhamkhalash31.github.io/"
+BUG_REPORT_URL="https://shubhamkhalash31.github.io/"
