@@ -15,6 +15,8 @@ chmod +x /usr/local/bin/shubham-update
 curl -fsSL "$REPO_RAW/apps/shubham-update.desktop" -o /usr/share/applications/shubham-update.desktop || true
 curl -fsSL "$REPO_RAW/apps/shubham-update-check.sh" -o /usr/local/bin/shubham-update-check || true
 chmod +x /usr/local/bin/shubham-update-check 2>/dev/null || true
+curl -fsSL "$REPO_RAW/apps/shubham-autoupdate.sh" -o /usr/local/bin/shubham-autoupdate || true
+chmod +x /usr/local/bin/shubham-autoupdate 2>/dev/null || true
 mkdir -p /etc/xdg/autostart
 curl -fsSL "$REPO_RAW/apps/shubham-update-autostart.desktop" -o /etc/xdg/autostart/shubham-update-autostart.desktop || true
 
