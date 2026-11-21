@@ -1,0 +1,3 @@
+VERSION=3
+NOTES=Shubham OS 3: gehara Windows/Kali switch, naya boot logo, Mac dock, Shubham branding har jagah.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-3.sh
