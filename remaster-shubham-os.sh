@@ -145,6 +145,11 @@ sudo cp "$PACK_DIR/apps/shubham-update-check.sh" "$ROOTFS/usr/local/bin/shubham-
 sudo chmod +x "$ROOTFS/usr/local/bin/shubham-update-check"
 sudo mkdir -p "$ROOTFS/etc/xdg/autostart"
 sudo cp "$PACK_DIR/apps/shubham-update-autostart.desktop" "$ROOTFS/etc/xdg/autostart/"
+# Live Auto-Update machinery (Live start hote hi latest version khud lag jaye)
+sudo cp "$PACK_DIR/apps/shubham-autoupdate.sh" "$ROOTFS/usr/local/bin/shubham-autoupdate"
+sudo chmod +x "$ROOTFS/usr/local/bin/shubham-autoupdate"
+sudo cp "$PACK_DIR/apps/shubham-live-sudoers" "$ROOTFS/etc/sudoers.d/shubham-live-update"
+sudo chmod 440 "$ROOTFS/etc/sudoers.d/shubham-live-update"
 echo "3" | sudo tee "$ROOTFS/etc/shubham-os-version" > /dev/null
 # (vi) Taskbar me updater pin + neeche Mac-jaisa dock (system default panel par)
 if [ -f "$ROOTFS/etc/xdg/xfce4/panel/default.xml" ]; then
