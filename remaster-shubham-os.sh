@@ -112,6 +112,67 @@ sudo cp "$PACK_DIR/scripts/shubham-windows" "$ROOTFS/usr/local/bin/"
 sudo cp "$PACK_DIR/scripts/shubham-kali"    "$ROOTFS/usr/local/bin/"
 sudo chmod +x "$ROOTFS/usr/local/bin/shubham-windows" "$ROOTFS/usr/local/bin/shubham-kali"
 
+echo "[4.5/7] v3 branding: boot logo, user naam, menu naam, updater, dock..."
+# (i) Plymouth boot logo (start wala dragon) -> apna golden emblem
+while IFS= read -r -d '' f; do
+  DIM=$(sudo identify -format '%wx%h' "$f" 2>/dev/null || echo "")
+  if [ -n "$DIM" ]; then
+    sudo convert "$PACK_DIR/images/shubham-os-logo.jpg" -resize "$DIM" "$f" 2>/dev/null || sudo cp "$PACK_DIR/images/shubham-os-logo.jpg" "$f"
+  fi
+done < <(sudo find "$ROOTFS/usr/share/plymouth/themes" -type f -iname '*.png' \( -iname '*logo*' -o -iname '*watermark*' \) -print0 2>/dev/null)
+# (ii) Live user ka display naam: "Kali Live user" -> "Shubham OS Live"
+for d in "$ROOTFS/usr/lib/live/config" "$ROOTFS/etc/live/config" "$ROOTFS/lib/live/config"; do
+  if [ -d "$d" ]; then
+    sudo grep -rl 'Kali Live user' "$d" 2>/dev/null | while IFS= read -r f; do
+      sudo sed -i 's/Kali Live user/Shubham OS Live/g' "$f"
+    done
+  fi
+done
+# (iii) User avatar (menu ke neeche dikhta hai) -> apna logo
+sudo cp "$PACK_DIR/images/shubham-os-logo.jpg" "$ROOTFS/etc/skel/.face" 2>/dev/null || true
+if [ -d "$ROOTFS/home/kali" ]; then
+  sudo cp "$PACK_DIR/images/shubham-os-logo.jpg" "$ROOTFS/home/kali/.face" 2>/dev/null || true
+fi
+# (iv) Menu ke OS-level naam: Kali Linux/Tools/Docs/Bugs -> Shubham OS ...
+for f in "$ROOTFS"/usr/share/applications/*kali*.desktop; do
+  [ -f "$f" ] && sudo sed -i 's/^Name=Kali Linux/Name=Shubham OS/; s/^Name=Kali Tools/Name=Shubham OS Tools/; s/^Name=Kali Docs/Name=Shubham OS Docs/; s/^Name=Kali Bugs/Name=Shubham OS Bugs/' "$f"
+done
+# (v) ShubhamOS Update app + version file
+sudo cp "$PACK_DIR/apps/shubham-update.py" "$ROOTFS/usr/local/bin/shubham-update"
+sudo chmod +x "$ROOTFS/usr/local/bin/shubham-update"
+sudo cp "$PACK_DIR/apps/shubham-update.desktop" "$ROOTFS/usr/share/applications/"
+sudo cp "$PACK_DIR/apps/shubham-update-check.sh" "$ROOTFS/usr/local/bin/shubham-update-check"
+sudo chmod +x "$ROOTFS/usr/local/bin/shubham-update-check"
+sudo mkdir -p "$ROOTFS/etc/xdg/autostart"
+sudo cp "$PACK_DIR/apps/shubham-update-autostart.desktop" "$ROOTFS/etc/xdg/autostart/"
+echo "3" | sudo tee "$ROOTFS/etc/shubham-os-version" > /dev/null
+# (vi) Taskbar me updater pin + neeche Mac-jaisa dock (system default panel par)
+if [ -f "$ROOTFS/etc/xdg/xfce4/panel/default.xml" ]; then
+  python3 "$PACK_DIR/scripts/panel-pin.py" "$ROOTFS/etc/xdg/xfce4/panel/default.xml" "$ROOTFS/usr/share/applications" || true
+fi
+
+# (vii) Security: Firewall default ON (nftables) — bahar se sab band, andar se sab khula (Windows Firewall jaisa)
+cat << 'NFT' | sudo tee "$ROOTFS/etc/nftables.conf" > /dev/null
+#!/usr/sbin/nft -f
+flush ruleset
+table inet filter {
+  chain input {
+    type filter hook input priority 0; policy drop;
+    iif "lo" accept
+    ct state established,related accept
+    ct state invalid drop
+  }
+  chain forward {
+    type filter hook forward priority 0; policy drop;
+  }
+  chain output {
+    type filter hook output priority 0; policy accept;
+  }
+}
+NFT
+sudo mkdir -p "$ROOTFS/etc/systemd/system/multi-user.target.wants"
+sudo ln -sf /lib/systemd/system/nftables.service "$ROOTFS/etc/systemd/system/multi-user.target.wants/nftables.service"
+
 echo "[5/7] Boot menu me naam aur user badal raha hai..."
 # GRUB: menuentry wali line par naam; linux wali line par user/hostname
 GRUBCFG="$ISO_COPY/boot/grub/grub.cfg"
@@ -125,6 +186,25 @@ for CFG in "$ISO_COPY"/isolinux/live.cfg "$ISO_COPY"/syslinux/live.cfg; do
     sed -i '/menu label/ s/Kali/Shubham OS/g' "$CFG"
     sed -i '/append boot=live/ { /username=/! s/ ---/ username=shubham hostname=shubham-os ---/; /username=/! s/$/ username=shubham hostname=shubham-os/ }' "$CFG"
   fi
+done
+
+# v3: Boot menu ka title + option naam + splash image (KALI wala bada logo)
+for CFG in "$ISO_COPY"/isolinux/live.cfg "$ISO_COPY"/syslinux/live.cfg; do
+  if [ -f "$CFG" ]; then
+    sed -i '/menu title/ { s/Kali Linux/Shubham OS/g; s/Kali/Shubham OS/g }' "$CFG"
+    sed -i '/menu label/ { s/Live system/Shubham OS Live/g; s/Start installer/Install Shubham OS/g }' "$CFG"
+  fi
+done
+# Boot splash: apne dark wallpaper se 640x480 branded splash banao aur har splash.png par lagao
+if command -v convert >/dev/null 2>&1; then
+  convert "$PACK_DIR/images/wallpaper-kali-mode.jpg" -resize 640x480^ -gravity center -extent 640x480 /tmp/shubham-splash.png 2>/dev/null || true
+  if [ -f /tmp/shubham-splash.png ]; then
+    while IFS= read -r -d '' s; do cp /tmp/shubham-splash.png "$s"; done < <(find "$ISO_COPY" -name 'splash.png' -print0 2>/dev/null)
+  fi
+fi
+# GRUB theme ke text files me bhi Kali -> Shubham OS
+grep -rl 'Kali' "$ISO_COPY/boot/grub" 2>/dev/null | while IFS= read -r f; do
+  case "$f" in *.cfg|*.txt|*.theme) sed -i 's/Kali Linux/Shubham OS/g; s/Kali/Shubham OS/g' "$f" ;; esac
 done
 
 echo "[6/7] System wapas pack ho raha hai (sabse lamba hissa)..."
