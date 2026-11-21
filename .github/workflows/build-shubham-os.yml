@@ -41,7 +41,7 @@ jobs:
           SIZE=$(stat -c%s kali-live.iso)
           if [ "$SIZE" -lt 3000000000 ]; then echo "ERROR: File bahut chhoti hai ($SIZE bytes) - ISO download nahi hui"; exit 1; fi
           curl -sL -o SHA256SUMS "$BASE/SHA256SUMS"
-          grep "$ISO_NAME" SHA256SUMS | sed "s|$ISO_NAME|kali-live.iso|" | sha256sum -c - || { echo "ERROR: Checksum match nahi hua"; exit 1; }
+          grep " $ISO_NAME\$" SHA256SUMS | sed "s|$ISO_NAME|kali-live.iso|" | sha256sum -c - || { echo "ERROR: Checksum match nahi hua"; exit 1; }
           echo "Checksum OK - asli Kali ISO hai"
       - name: Remaster into Shubham OS
         run: |
@@ -58,3 +58,4 @@ jobs:
           ls -lh parts/
           gh release delete "v1" --yes --cleanup-tag || true
           gh release create "v1" parts/* --title "Shubham OS v1" --notes "Shubham OS - Dual Mode. SAARE parts aur ShubhamOS-join.bat download karo, sab ek hi folder me rakho, phir join.bat par double-click karo - ShubhamOS.iso ban jayegi."
+          
