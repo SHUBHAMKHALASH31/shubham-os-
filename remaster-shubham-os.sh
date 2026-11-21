@@ -1,1 +1,125 @@
-IyEvYmluL2Jhc2gKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyAgU0hVQkhBTSBPUyDigJQgUkVNQVNURVIgKEpVR0FBRCkgU0NSSVBUCiMgIFRheXlhciBLYWxpIExpdmUgSVNPIGtvIGtob2wga2FyIGFuZGFyIFNodWJoYW0gT1Mga2EKIyAgYnJhbmRpbmcgZGFhbCBrYXIgd2FwYXMgYmFuZCBrYXJ0aSBoYWkg4oCUIG5heWkgSVNPIHRhaXlhci4KIyAgTGl2ZS1idWlsZCB3YWxpIGxhbWJpIGJ1aWxkIGtpIGphZ2FoIHllIHNob3J0Y3V0IGhhaS4KIwojICBDaGFsYW5hOgojICAgIC4vcmVtYXN0ZXItc2h1YmhhbS1vcy5zaCAvcGF0aC90by9rYWxpLWxpdmUuaXNvCiMgIFphcm9vcmF0OiBLYWxpIG1hY2hpbmUvVk0sIGludGVybmV0IChjaGhvdGUgdG9vbHMga2UgbGl5ZSksCiMgICAgICAgICAgICBWTSBtZSB+MjUgR0Iga2hhbGkgamFnYWgKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0Kc2V0IC1lCmNkICIkKGRpcm5hbWUgIiQwIikiClBBQ0tfRElSPSIkKHB3ZCkiCiMgSW1hZ2VzIGJhc2U2NCBtZSBhYXlpIGhvIHRvIFBORyBiYW5hIGxvIChHaXRIdWIgdGV4dC1wdXNoIGtlIGxpeWUpCmZvciBCNjQgaW4gaW1hZ2VzLyouYjY0OyBkbyBbIC1mICIkQjY0IiBdICYmIGJhc2U2NCAtZCAiJEI2NCIgPiAiJHtCNjQlLmI2NH0iOyBkb25lCiMgSW1hZ2VzIHJlcG8gbWUgbmEgaG8gdG8gbGluayBzZSBsZSBsbyAoaW1hZ2VzL0lNQUdFLVVSTFMudHh0KQppZiBbIC1mIGltYWdlcy9JTUFHRS1VUkxTLnR4dCBdOyB0aGVuIHdoaWxlIHJlYWQgLXIgSU5BTUUgSVVSTDsgZG8gWyAtZiAiaW1hZ2VzLyRJTkFNRSIgXSB8fCBjdXJsIC1zTCAtbyAiaW1hZ2VzLyRJTkFNRSIgIiRJVVJMIjsgZG9uZSA8IGltYWdlcy9JTUFHRS1VUkxTLnR4dDsgZmkKCklTT19JTj0iJHsxOi19IgppZiBbIC16ICIkSVNPX0lOIiBdIHx8IFsgISAtZiAiJElTT19JTiIgXTsgdGhlbgogIGVjaG8gIkVSUk9SOiBLYWxpIExpdmUgSVNPIG5haGkgbWlsaS4iCiAgZWNobyAiQWlzZSBjaGFsYW86ICAuL3JlbWFzdGVyLXNodWJoYW0tb3Muc2ggfi9Eb3dubG9hZHMva2FsaS1saW51eC1saXZlLmlzbyIKICBleGl0IDEKZmkKCmVjaG8gIj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IgplY2hvICIgIFNIVUJIQU0gT1MgUkVNQVNURVIgU0hVUlUiCmVjaG8gIiAgQmFzZSBJU086ICRJU09fSU4iCmVjaG8gIj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IgoKZWNobyAiWzEvN10gQ2hob3RlIHRvb2xzIGluc3RhbGwgaG8gcmFoZSBoYWkuLi4iCnN1ZG8gYXB0IHVwZGF0ZQpzdWRvIGFwdCBpbnN0YWxsIC15IHNxdWFzaGZzLXRvb2xzIHhvcnJpc28gcnN5bmMKCldPUks9IiRIT01FL3NodWJoYW0tcmVtYXN0ZXIiCklTT19NTlQ9IiRXT1JLL21udCIKSVNPX0NPUFk9IiRXT1JLL2lzby1jb3B5IgpST09URlM9IiRXT1JLL3Jvb3RmcyIKcm0gLXJmICIkV09SSyIKbWtkaXIgLXAgIiRJU09fTU5UIiAiJElTT19DT1BZIiAiJFJPT1RGUyIKCmVjaG8gIlsyLzddIElTTyBraHVsIHJhaGkgaGFpLi4uIgpzdWRvIG1vdW50IC1vIGxvb3AgIiRJU09fSU4iICIkSVNPX01OVCIKcnN5bmMgLWEgIiRJU09fTU5ULyIgIiRJU09fQ09QWS8iCnN1ZG8gdW1vdW50ICIkSVNPX01OVCIKY2htb2QgLVIgdSt3ICIkSVNPX0NPUFkiCgpTUT0iJElTT19DT1BZL2xpdmUvZmlsZXN5c3RlbS5zcXVhc2hmcyIKaWYgWyAhIC1mICIkU1EiIF07IHRoZW4KICBlY2hvICJFUlJPUjogbGl2ZS9maWxlc3lzdGVtLnNxdWFzaGZzIG5haGkgbWlsaSDigJQgeWUgTGl2ZSBJU08gbmFoaSBsYWd0aS4iCiAgZXhpdCAxCmZpCgplY2hvICJbMy83XSBTeXN0ZW0ga2kgZmlsZSBraHVsIHJhaGkgaGFpICh0aG9kYSB0aW1lIGxhZ2VnYSkuLi4iCnN1ZG8gdW5zcXVhc2hmcyAtZCAiJFJPT1RGUyIgIiRTUSIgPiAvZGV2L251bGwKCmVjaG8gIls0LzddIFNodWJoYW0gT1Mga2EgYnJhbmRpbmcgZGFsIHJhaGEgaGFpLi4uIgojIFBlaGNoYW4Kc3VkbyBjcCAiJFBBQ0tfRElSL2JyYW5kaW5nL29zLXJlbGVhc2UiICIkUk9PVEZTL2V0Yy9vcy1yZWxlYXNlIgpzdWRvIGNwICIkUEFDS19ESVIvYnJhbmRpbmcvb3MtcmVsZWFzZSIgIiRST09URlMvdXNyL2xpYi9vcy1yZWxlYXNlIgpzdWRvIGNwICIkUEFDS19ESVIvYnJhbmRpbmcvaG9zdG5hbWUiICAgIiRST09URlMvZXRjL2hvc3RuYW1lIgpzdWRvIGNwICIkUEFDS19ESVIvYnJhbmRpbmcvbW90ZCIgICAgICAgIiRST09URlMvZXRjL21vdGQiCiMgV2FsbHBhcGVyICsgbG9nbwpzdWRvIG1rZGlyIC1wICIkUk9PVEZTL3Vzci9zaGFyZS9iYWNrZ3JvdW5kcy9zaHViaGFtLW9zIgpzdWRvIGNwICIkUEFDS19ESVIvaW1hZ2VzL3dhbGxwYXBlci1rYWxpLW1vZGUuanBnIiAgICAiJFJPT1RGUy91c3Ivc2hhcmUvYmFja2dyb3VuZHMvc2h1YmhhbS1vcy8iCnN1ZG8gY3AgIiRQQUNLX0RJUi9pbWFnZXMvd2FsbHBhcGVyLXdpbmRvd3MtbW9kZS5qcGciICIkUk9PVEZTL3Vzci9zaGFyZS9iYWNrZ3JvdW5kcy9zaHViaGFtLW9zLyIKc3VkbyBjcCAiJFBBQ0tfRElSL2ltYWdlcy9zaHViaGFtLW9zLWxvZ28uanBnIiAgICAgICAgIiRST09URlMvdXNyL3NoYXJlL3BpeG1hcHMvIgojIFRvZ2dsZSBjb21tYW5kcwpzdWRvIGNwICIkUEFDS19ESVIvc2NyaXB0cy9zaHViaGFtLXdpbmRvd3MiICIkUk9PVEZTL3Vzci9sb2NhbC9iaW4vIgpzdWRvIGNwICIkUEFDS19ESVIvc2NyaXB0cy9zaHViaGFtLWthbGkiICAgICIkUk9PVEZTL3Vzci9sb2NhbC9iaW4vIgpzdWRvIGNobW9kICt4ICIkUk9PVEZTL3Vzci9sb2NhbC9iaW4vc2h1YmhhbS13aW5kb3dzIiAiJFJPT1RGUy91c3IvbG9jYWwvYmluL3NodWJoYW0ta2FsaSIKIyBEZWZhdWx0IHdhbGxwYXBlciAobmF5ZSB1c2VyIGtlIGxpeWUsIFhGQ0UpCnN1ZG8gbWtkaXIgLXAgIiRST09URlMvZXRjL3NrZWwvLmNvbmZpZy94ZmNlNC94ZmNvbmYveGZjZS1wZXJjaGFubmVsLXhtbCIKY2F0IDw8ICdYTUwnIHwgc3VkbyB0ZWUgIiRST09URlMvZXRjL3NrZWwvLmNvbmZpZy94ZmNlNC94ZmNvbmYveGZjZS1wZXJjaGFubmVsLXhtbC94ZmNlNC1kZXNrdG9wLnhtbCIgPiAvZGV2L251bGwKPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGNoYW5uZWwgbmFtZT0ieGZjZTQtZGVza3RvcCIgdmVyc2lvbj0iMS4wIj4KICA8cHJvcGVydHkgbmFtZT0iYmFja2Ryb3AiIHR5cGU9ImVtcHR5Ij4KICAgIDxwcm9wZXJ0eSBuYW1lPSJzY3JlZW4wIiB0eXBlPSJlbXB0eSI+CiAgICAgIDxwcm9wZXJ0eSBuYW1lPSJtb25pdG9yMCIgdHlwZT0iZW1wdHkiPgogICAgICAgIDxwcm9wZXJ0eSBuYW1lPSJ3b3Jrc3BhY2UwIiB0eXBlPSJlbXB0eSI+CiAgICAgICAgICA8cHJvcGVydHkgbmFtZT0iaW1hZ2UtcGF0aCIgdHlwZT0ic3RyaW5nIiB2YWx1ZT0iL3Vzci9zaGFyZS9iYWNrZ3JvdW5kcy9zaHViaGFtLW9zL3dhbGxwYXBlci1rYWxpLW1vZGUuanBnIi8+CiAgICAgICAgICA8cHJvcGVydHkgbmFtZT0iaW1hZ2Utc3R5bGUiIHR5cGU9ImludCIgdmFsdWU9IjUiLz4KICAgICAgICA8L3Byb3BlcnR5PgogICAgICA8L3Byb3BlcnR5PgogICAgPC9wcm9wZXJ0eT4KICA8L3Byb3BlcnR5Pgo8L2NoYW5uZWw+ClhNTAoKZWNobyAiWzUvN10gQm9vdCBtZW51IG1lIG5hYW0gYXVyIHVzZXIgYmFkYWwgcmFoYSBoYWkuLi4iCiMgR1JVQjogbWVudWVudHJ5IHdhbGkgbGluZSBwYXIgbmFhbTsgbGludXggd2FsaSBsaW5lIHBhciB1c2VyL2hvc3RuYW1lCkdSVUJDRkc9IiRJU09fQ09QWS9ib290L2dydWIvZ3J1Yi5jZmciCmlmIFsgLWYgIiRHUlVCQ0ZHIiBdOyB0aGVuCiAgc2VkIC1pICcvbWVudWVudHJ5LyBzL0thbGkgR05VXC9MaW51eC9TaHViaGFtIE9TL2c7IC9tZW51ZW50cnkvIHMvS2FsaS9TaHViaGFtIE9TL2cnICIkR1JVQkNGRyIKICBzZWQgLWkgJy9eW1s6c3BhY2U6XV0qbGludXgvIHsgL3VzZXJuYW1lPS8hIHMvIC0tLS8gdXNlcm5hbWU9c2h1YmhhbSBob3N0bmFtZT1zaHViaGFtLW9zIC0tLS87IC91c2VybmFtZT0vISBzLyQvIHVzZXJuYW1lPXNodWJoYW0gaG9zdG5hbWU9c2h1YmhhbS1vcy8gfScgIiRHUlVCQ0ZHIgpmaQojIElTT0xJTlVYOiBtZW51IGxhYmVsIHBhciBuYWFtOyBhcHBlbmQgd2FsaSBsaW5lIHBhciB1c2VyL2hvc3RuYW1lCmZvciBDRkcgaW4gIiRJU09fQ09QWSIvaXNvbGludXgvbGl2ZS5jZmcgIiRJU09fQ09QWSIvc3lzbGludXgvbGl2ZS5jZmc7IGRvCiAgaWYgWyAtZiAiJENGRyIgXTsgdGhlbgogICAgc2VkIC1pICcvbWVudSBsYWJlbC8gcy9LYWxpL1NodWJoYW0gT1MvZycgIiRDRkciCiAgICBzZWQgLWkgJy9hcHBlbmQgYm9vdD1saXZlLyB7IC91c2VybmFtZT0vISBzLyAtLS0vIHVzZXJuYW1lPXNodWJoYW0gaG9zdG5hbWU9c2h1YmhhbS1vcyAtLS0vOyAvdXNlcm5hbWU9LyEgcy8kLyB1c2VybmFtZT1zaHViaGFtIGhvc3RuYW1lPXNodWJoYW0tb3MvIH0nICIkQ0ZHIgogIGZpCmRvbmUKCmVjaG8gIls2LzddIFN5c3RlbSB3YXBhcyBwYWNrIGhvIHJhaGEgaGFpIChzYWJzZSBsYW1iYSBoaXNzYSkuLi4iCnN1ZG8gcm0gLWYgIiRTUSIKc3VkbyBta3NxdWFzaGZzICIkUk9PVEZTIiAiJFNRIiAtY29tcCB4eiAtbm9hcHBlbmQgPiAvZGV2L251bGwKCmVjaG8gIls3LzddIE5heWVlIElTTyBiYW4gcmFoaSBoYWkuLi4iCklTT19PVVQ9IiRIT01FL1NodWJoYW1PUy12MS5pc28iCnhvcnJpc28gLWluZGV2ICIkSVNPX0lOIiAtb3V0ZGV2ICIkSVNPX09VVCIgLWJvb3RfaW1hZ2UgYW55IHJlcGxheSBcCiAgLW1hcCAiJFNRIiAvbGl2ZS9maWxlc3lzdGVtLnNxdWFzaGZzIFwKICAtbWFwICIkR1JVQkNGRyIgL2Jvb3QvZ3J1Yi9ncnViLmNmZyAyPi9kZXYvbnVsbCB8fCBcCnhvcnJpc28gLWluZGV2ICIkSVNPX0lOIiAtb3V0ZGV2ICIkSVNPX09VVCIgLWJvb3RfaW1hZ2UgYW55IHJlcGxheSBcCiAgLW1hcCAiJFNRIiAvbGl2ZS9maWxlc3lzdGVtLnNxdWFzaGZzCgpzdWRvIHJtIC1yZiAiJFdPUksiCmVjaG8gIj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IgplY2hvICIgIEhPIEdBWUEhIFNodWJoYW0gT1Mga2kgSVNPIHRhaXlhciBoYWk6IgpscyAtbGggIiRJU09fT1VUIgplY2hvICIgIElzZSBWTXdhcmUgbWUgbmF5aSBWTSBiYW5hIGthciBib290IGthcm8g4oCUIgplY2hvICIgIHBlaGxlIExpdmUgY2hhbGFvLCBwaGlyIEluc3RhbGwgdHJ5IGthcm8uIgplY2hvICI9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSIK
+#!/bin/bash
+# ============================================================
+#  SHUBHAM OS — REMASTER (JUGAAD) SCRIPT
+#  Tayyar Kali Live ISO ko khol kar andar Shubham OS ka
+#  branding daal kar wapas band karti hai — nayi ISO taiyar.
+#  Live-build wali lambi build ki jagah ye shortcut hai.
+#
+#  Chalana:
+#    ./remaster-shubham-os.sh /path/to/kali-live.iso
+#  Zaroorat: Kali machine/VM, internet (chhote tools ke liye),
+#            VM me ~25 GB khali jagah
+# ============================================================
+set -e
+cd "$(dirname "$0")"
+PACK_DIR="$(pwd)"
+# Images base64 me aayi ho to PNG bana lo (GitHub text-push ke liye)
+for B64 in images/*.b64; do [ -f "$B64" ] && base64 -d "$B64" > "${B64%.b64}"; done
+# Images repo me na ho to link se le lo (images/IMAGE-URLS.txt)
+if [ -f images/IMAGE-URLS.txt ]; then while read -r INAME IURL; do [ -f "images/$INAME" ] || curl -sL -o "images/$INAME" "$IURL"; done < images/IMAGE-URLS.txt; fi
+
+ISO_IN="${1:-}"
+if [ -z "$ISO_IN" ] || [ ! -f "$ISO_IN" ]; then
+  echo "ERROR: Kali Live ISO nahi mili."
+  echo "Aise chalao:  ./remaster-shubham-os.sh ~/Downloads/kali-linux-live.iso"
+  exit 1
+fi
+
+echo "==============================================="
+echo "  SHUBHAM OS REMASTER SHURU"
+echo "  Base ISO: $ISO_IN"
+echo "==============================================="
+
+echo "[1/7] Chhote tools install ho rahe hai..."
+sudo apt update
+sudo apt install -y squashfs-tools xorriso rsync
+
+WORK="$HOME/shubham-remaster"
+ISO_MNT="$WORK/mnt"
+ISO_COPY="$WORK/iso-copy"
+ROOTFS="$WORK/rootfs"
+rm -rf "$WORK"
+mkdir -p "$ISO_MNT" "$ISO_COPY" "$ROOTFS"
+
+echo "[2/7] ISO khul rahi hai..."
+sudo mount -o loop "$ISO_IN" "$ISO_MNT"
+rsync -a "$ISO_MNT/" "$ISO_COPY/"
+sudo umount "$ISO_MNT"
+chmod -R u+w "$ISO_COPY"
+
+SQ="$ISO_COPY/live/filesystem.squashfs"
+if [ ! -f "$SQ" ]; then
+  echo "ERROR: live/filesystem.squashfs nahi mili — ye Live ISO nahi lagti."
+  exit 1
+fi
+
+echo "[3/7] System ki file khul rahi hai (thoda time lagega)..."
+sudo unsquashfs -d "$ROOTFS" "$SQ" > /dev/null
+
+echo "[4/7] Shubham OS ka branding dal raha hai..."
+# Pehchan
+sudo cp "$PACK_DIR/branding/os-release" "$ROOTFS/etc/os-release"
+sudo cp "$PACK_DIR/branding/os-release" "$ROOTFS/usr/lib/os-release"
+sudo cp "$PACK_DIR/branding/hostname"   "$ROOTFS/etc/hostname"
+sudo cp "$PACK_DIR/branding/motd"       "$ROOTFS/etc/motd"
+# Wallpaper + logo
+sudo mkdir -p "$ROOTFS/usr/share/backgrounds/shubham-os"
+sudo cp "$PACK_DIR/images/wallpaper-kali-mode.jpg"    "$ROOTFS/usr/share/backgrounds/shubham-os/"
+sudo cp "$PACK_DIR/images/wallpaper-windows-mode.jpg" "$ROOTFS/usr/share/backgrounds/shubham-os/"
+sudo cp "$PACK_DIR/images/shubham-os-logo.jpg"        "$ROOTFS/usr/share/pixmaps/"
+# Toggle commands
+sudo cp "$PACK_DIR/scripts/shubham-windows" "$ROOTFS/usr/local/bin/"
+sudo cp "$PACK_DIR/scripts/shubham-kali"    "$ROOTFS/usr/local/bin/"
+sudo chmod +x "$ROOTFS/usr/local/bin/shubham-windows" "$ROOTFS/usr/local/bin/shubham-kali"
+# Default wallpaper (naye user ke liye, XFCE)
+sudo mkdir -p "$ROOTFS/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
+cat << 'XML' | sudo tee "$ROOTFS/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml" > /dev/null
+<?xml version="1.0" encoding="UTF-8"?>
+<channel name="xfce4-desktop" version="1.0">
+  <property name="backdrop" type="empty">
+    <property name="screen0" type="empty">
+      <property name="monitor0" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="image-path" type="string" value="/usr/share/backgrounds/shubham-os/wallpaper-kali-mode.jpg"/>
+          <property name="image-style" type="int" value="5"/>
+        </property>
+      </property>
+    </property>
+  </property>
+</channel>
+XML
+
+echo "[5/7] Boot menu me naam aur user badal raha hai..."
+# GRUB: menuentry wali line par naam; linux wali line par user/hostname
+GRUBCFG="$ISO_COPY/boot/grub/grub.cfg"
+if [ -f "$GRUBCFG" ]; then
+  sed -i '/menuentry/ s/Kali GNU\/Linux/Shubham OS/g; /menuentry/ s/Kali/Shubham OS/g' "$GRUBCFG"
+  sed -i '/^[[:space:]]*linux/ { /username=/! s/ ---/ username=shubham hostname=shubham-os ---/; /username=/! s/$/ username=shubham hostname=shubham-os/ }' "$GRUBCFG"
+fi
+# ISOLINUX: menu label par naam; append wali line par user/hostname
+for CFG in "$ISO_COPY"/isolinux/live.cfg "$ISO_COPY"/syslinux/live.cfg; do
+  if [ -f "$CFG" ]; then
+    sed -i '/menu label/ s/Kali/Shubham OS/g' "$CFG"
+    sed -i '/append boot=live/ { /username=/! s/ ---/ username=shubham hostname=shubham-os ---/; /username=/! s/$/ username=shubham hostname=shubham-os/ }' "$CFG"
+  fi
+done
+
+echo "[6/7] System wapas pack ho raha hai (sabse lamba hissa)..."
+sudo rm -f "$SQ"
+sudo mksquashfs "$ROOTFS" "$SQ" -comp xz -noappend > /dev/null
+
+echo "[7/7] Nayee ISO ban rahi hai..."
+ISO_OUT="$HOME/ShubhamOS-v1.iso"
+xorriso -indev "$ISO_IN" -outdev "$ISO_OUT" -boot_image any replay \
+  -map "$SQ" /live/filesystem.squashfs \
+  -map "$GRUBCFG" /boot/grub/grub.cfg 2>/dev/null || \
+xorriso -indev "$ISO_IN" -outdev "$ISO_OUT" -boot_image any replay \
+  -map "$SQ" /live/filesystem.squashfs
+
+sudo rm -rf "$WORK"
+echo "==============================================="
+echo "  HO GAYA! Shubham OS ki ISO taiyar hai:"
+ls -lh "$ISO_OUT"
+echo "  Ise VMware me nayi VM bana kar boot karo —"
+echo "  pehle Live chalao, phir Install try karo."
+echo "==============================================="
