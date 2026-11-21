@@ -150,7 +150,7 @@ sudo cp "$PACK_DIR/apps/shubham-autoupdate.sh" "$ROOTFS/usr/local/bin/shubham-au
 sudo chmod +x "$ROOTFS/usr/local/bin/shubham-autoupdate"
 sudo cp "$PACK_DIR/apps/shubham-live-sudoers" "$ROOTFS/etc/sudoers.d/shubham-live-update"
 sudo chmod 440 "$ROOTFS/etc/sudoers.d/shubham-live-update"
-echo "3" | sudo tee "$ROOTFS/etc/shubham-os-version" > /dev/null
+echo "5" | sudo tee "$ROOTFS/etc/shubham-os-version" > /dev/null
 # (vi) Taskbar me updater pin + neeche Mac-jaisa dock (system default panel par)
 if [ -f "$ROOTFS/etc/xdg/xfce4/panel/default.xml" ]; then
   python3 "$PACK_DIR/scripts/panel-pin.py" "$ROOTFS/etc/xdg/xfce4/panel/default.xml" "$ROOTFS/usr/share/applications" || true
