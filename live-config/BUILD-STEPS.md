@@ -1,1 +1,28 @@
-IyBTaHViaGFtIE9TIOKAlCBCdWlsZCBTdGVwcyAoUEMgcGFyIGNoYWxlbmdlLCBNdXNlIGtlIHNhdGggc3RlcC1ieS1zdGVwKQoKIyMgVGFpeWFhcmkgKEthbGkgVk0geWEgUEMga2kgS2FsaSBwYXIpCjEuIHN1ZG8gYXB0IHVwZGF0ZSAmJiBzdWRvIGFwdCBpbnN0YWxsIC15IGxpdmUtYnVpbGQgZ2l0CjIuIEthbGkga2Egb2ZmaWNpYWwgbGl2ZS1idWlsZCBjb25maWcgbGVuYToKICAgZ2l0IGNsb25lIGh0dHBzOi8vZ2l0bGFiLmNvbS9rYWxpbGludXgvYnVpbGQtc2NyaXB0cy9saXZlLWJ1aWxkLWNvbmZpZy5naXQgc2h1YmhhbS1vcy1idWlsZAozLiBjZCBzaHViaGFtLW9zLWJ1aWxkCgojIyBBcG5hIHNhbWFhbiBqb2RuYQo0LiBJcyBmb2xkZXIga2UgcGFja2FnZS1saXN0cy9zaHViaGFtLmxpc3QuY2hyb290IGtvCiAgIGthbGktY29uZmlnL3ZhcmlhbnQteGZjZS9wYWNrYWdlLWxpc3RzLyBrZSBhbmRhciBjb3B5IGthcm5hCjUuIEJyYW5kaW5nIGZpbGVzICguLi9icmFuZGluZy9vcy1yZWxlYXNlLCBob3N0bmFtZSwgbW90ZCkga28KICAga2FsaS1jb25maWcvY29tbW9uL2luY2x1ZGVzLmNocm9vdC9ldGMvIGtlIGFuZGFyIHJha2huYQo2LiBUb2dnbGUgY29tbWFuZHMgKHNodWJoYW0td2luZG93cywgc2h1YmhhbS1rYWxpKSBrbwogICBrYWxpLWNvbmZpZy9jb21tb24vaW5jbHVkZXMuY2hyb290L3Vzci9sb2NhbC9iaW4vIG1lIHJha2huYSArIGNobW9kICt4CjcuIFdhbGxwYXBlciBhdXIgbG9nbyBrbyBpbmNsdWRlcy5jaHJvb3QvdXNyL3NoYXJlL2JhY2tncm91bmRzLyBhdXIKICAgL3Vzci9zaGFyZS9waXhtYXBzLyBtZSByYWtobmEKCiMjIElTTyBiYW5hbmEKOC4gLi9idWlsZC5zaCAtLXZlcmJvc2UgLS12YXJpYW50IHhmY2UKICAgKHBlaGxpIGJhYXIgdGltZSBsYWdlZ2Eg4oCUIGNoYWkgYmFuYSBsZW5hKQo5LiBUYWl5YXIgSVNPOiBpbWFnZXMvIGZvbGRlciBtZSBtaWxlZ2kg4oCUIExpdmUgKyBJbnN0YWxsIGRvbm8gd2FsaQoKIyMgVGVzdAoxMC4gVk13YXJlIG1lIG5heWkgVk0g4oaSIElTTyBib290IOKGkiBMaXZlIGNoYWxhbyDihpIgcGhpciBJbnN0YWxsIGthcmtlIGRla2hvCjExLiBEb25vIG1vZGUgdG9nZ2xlIGthcmtlIGNoZWNrOiBzaHViaGFtLXdpbmRvd3MgLyBzaHViaGFtLWthbGkKCk5vdGU6IEhhciBjb21tYW5kIGJ1aWxkIGtlIHNhbWF5IHBlaGxlIHZlcmlmeSBrYXJrZSBoaSBjaGFsZWdpIOKAlCB5ZSBzaXJmIHJvYWRtYXAgaGFpLgo=
+# Shubham OS — Build Steps (PC par chalenge, Muse ke sath step-by-step)
+
+## Taiyaari (Kali VM ya PC ki Kali par)
+1. sudo apt update && sudo apt install -y live-build git
+2. Kali ka official live-build config lena:
+   git clone https://gitlab.com/kalilinux/build-scripts/live-build-config.git shubham-os-build
+3. cd shubham-os-build
+
+## Apna samaan jodna
+4. Is folder ke package-lists/shubham.list.chroot ko
+   kali-config/variant-xfce/package-lists/ ke andar copy karna
+5. Branding files (../branding/os-release, hostname, motd) ko
+   kali-config/common/includes.chroot/etc/ ke andar rakhna
+6. Toggle commands (shubham-windows, shubham-kali) ko
+   kali-config/common/includes.chroot/usr/local/bin/ me rakhna + chmod +x
+7. Wallpaper aur logo ko includes.chroot/usr/share/backgrounds/ aur
+   /usr/share/pixmaps/ me rakhna
+
+## ISO banana
+8. ./build.sh --verbose --variant xfce
+   (pehli baar time lagega — chai bana lena)
+9. Taiyar ISO: images/ folder me milegi — Live + Install dono wali
+
+## Test
+10. VMware me nayi VM → ISO boot → Live chalao → phir Install karke dekho
+11. Dono mode toggle karke check: shubham-windows / shubham-kali
+
+Note: Har command build ke samay pehle verify karke hi chalegi — ye sirf roadmap hai.
