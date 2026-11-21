@@ -67,19 +67,33 @@ sudo mkdir -p "$ROOTFS/usr/share/backgrounds/shubham-os"
 sudo cp "$PACK_DIR/images/wallpaper-kali-mode.jpg"    "$ROOTFS/usr/share/backgrounds/shubham-os/"
 sudo cp "$PACK_DIR/images/wallpaper-windows-mode.jpg" "$ROOTFS/usr/share/backgrounds/shubham-os/"
 sudo cp "$PACK_DIR/images/shubham-os-logo.jpg"        "$ROOTFS/usr/share/pixmaps/"
-# Toggle commands
-sudo cp "$PACK_DIR/scripts/shubham-windows" "$ROOTFS/usr/local/bin/"
-sudo cp "$PACK_DIR/scripts/shubham-kali"    "$ROOTFS/usr/local/bin/"
-sudo chmod +x "$ROOTFS/usr/local/bin/shubham-windows" "$ROOTFS/usr/local/bin/shubham-kali"
-# Default wallpaper (naye user ke liye, XFCE)
-sudo mkdir -p "$ROOTFS/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
-cat << 'XML' | sudo tee "$ROOTFS/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml" > /dev/null
+# --- v2 FIX: wallpaper sach me apply ho — 3 pakke tareeke ---
+# (a) Kali ke stock wallpaper files ko hi apne wale se badal do (format same rakhkar)
+sudo apt-get install -y imagemagick > /dev/null 2>&1 || true
+replace_img() {
+  case "$2" in
+    *.png) sudo convert "$1" "$2" 2>/dev/null || sudo cp "$1" "$2" ;;
+    *) sudo cp "$1" "$2" ;;
+  esac
+}
+while IFS= read -r -d '' f; do
+  replace_img "$PACK_DIR/images/wallpaper-kali-mode.jpg" "$f"
+done < <(sudo find "$ROOTFS/usr/share/backgrounds" -type f \( -iname '*.jpg' -o -iname '*.png' \) ! -path '*shubham-os*' -print0 2>/dev/null)
+# (b) kali-undercover ke apne wallpaper bhi badal do — Windows mode me wahi lagta hai
+while IFS= read -r -d '' f; do
+  replace_img "$PACK_DIR/images/wallpaper-windows-mode.jpg" "$f"
+done < <(sudo find "$ROOTFS/usr/share" -ipath '*undercover*' -type f \( -iname '*.jpg' -o -iname '*.png' \) -print0 2>/dev/null)
+# (c) XFCE config — skel aur maujuda kali user dono ke liye, sahi property (last-image) ke saath
+write_desktop_xml() {
+  sudo mkdir -p "$1"
+  cat << 'XML' | sudo tee "$1/xfce4-desktop.xml" > /dev/null
 <?xml version="1.0" encoding="UTF-8"?>
 <channel name="xfce4-desktop" version="1.0">
   <property name="backdrop" type="empty">
     <property name="screen0" type="empty">
       <property name="monitor0" type="empty">
         <property name="workspace0" type="empty">
+          <property name="last-image" type="string" value="/usr/share/backgrounds/shubham-os/wallpaper-kali-mode.jpg"/>
           <property name="image-path" type="string" value="/usr/share/backgrounds/shubham-os/wallpaper-kali-mode.jpg"/>
           <property name="image-style" type="int" value="5"/>
         </property>
@@ -88,6 +102,15 @@ cat << 'XML' | sudo tee "$ROOTFS/etc/skel/.config/xfce4/xfconf/xfce-perchannel-x
   </property>
 </channel>
 XML
+}
+write_desktop_xml "$ROOTFS/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
+if [ -d "$ROOTFS/home/kali" ]; then
+  write_desktop_xml "$ROOTFS/home/kali/.config/xfce4/xfconf/xfce-perchannel-xml"
+fi
+# Toggle commands
+sudo cp "$PACK_DIR/scripts/shubham-windows" "$ROOTFS/usr/local/bin/"
+sudo cp "$PACK_DIR/scripts/shubham-kali"    "$ROOTFS/usr/local/bin/"
+sudo chmod +x "$ROOTFS/usr/local/bin/shubham-windows" "$ROOTFS/usr/local/bin/shubham-kali"
 
 echo "[5/7] Boot menu me naam aur user badal raha hai..."
 # GRUB: menuentry wali line par naam; linux wali line par user/hostname
