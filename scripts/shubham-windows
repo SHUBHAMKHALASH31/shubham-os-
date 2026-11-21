@@ -1,23 +1,55 @@
 #!/bin/bash
-# Shubham OS — Windows Mode ON karne ki command
-# Kali ke undercover engine ko use karke desktop ko Windows jaisa banata hai.
-# Wapas jaane ke liye: shubham-kali
+# Shubham OS — Windows Mode ON (gehara switch)
+# Undercover look + saare Kali tools menu/settings se gayab.
+# Data (files) ko koi haath nahi lagta. Wapas: shubham-kali
 
 STATE_FILE="$HOME/.shubham-os-mode"
 CURRENT="kali"
 [ -f "$STATE_FILE" ] && CURRENT=$(cat "$STATE_FILE")
-
 if [ "$CURRENT" = "windows" ]; then
   echo "Shubham OS: system pehle se Windows Mode me hai."
   exit 0
 fi
-
 if ! command -v kali-undercover >/dev/null 2>&1; then
   echo "kali-undercover nahi mila. Pehle ye chalao:"
   echo "sudo apt update && sudo apt install -y kali-undercover"
   exit 1
 fi
 
+# --- Kali tools ko menu se chhupao (user-level NoDisplay overrides) ---
+APP_DIR="$HOME/.local/share/applications"
+STATE_DIR="$HOME/.config/shubham-os"
+mkdir -p "$APP_DIR" "$STATE_DIR"
+MANIFEST="$STATE_DIR/hidden-apps.txt"
+: > "$MANIFEST"
+
+# Ye normal apps Windows Mode me bhi dikhte rahenge
+keep_app() {
+  case "$1" in
+    *firefox*|*chromium*|*chrome*|*thunar*|*nautilus*|*mousepad*|*libreoffice*|\
+    *vlc*|*parole*|*ristretto*|*evince*|*gimp*|*inkscape*|*code.desktop|\
+    *xfce4-terminal*|*xfce4-settings-manager*|*xfce4-screenshooter*|\
+    *nm-connection-editor*|*blueman-manager*|*calculat*|*engrampa*|*file-roller*|\
+    *shubham-update*|*software*|*pamac*|*synaptic*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+for f in /usr/share/applications/*.desktop; do
+  [ -f "$f" ] || continue
+  base=$(basename "$f")
+  keep_app "$base" && continue
+  ovr="$APP_DIR/$base"
+  cp "$f" "$ovr" 2>/dev/null || continue
+  if grep -q '^NoDisplay=' "$ovr"; then
+    sed -i 's/^NoDisplay=.*/NoDisplay=true/' "$ovr"
+  else
+    echo 'NoDisplay=true' >> "$ovr"
+  fi
+  echo "$base" >> "$MANIFEST"
+done
+
 kali-undercover
 echo "windows" > "$STATE_FILE"
-echo "Shubham OS: Windows Mode ON ho gaya. Wapas Kali look ke liye: shubham-kali"
+xfce4-panel -r >/dev/null 2>&1 &
+echo "Shubham OS: Windows Mode ON — Kali tools menu se gayab. Wapas ke liye: shubham-kali"
