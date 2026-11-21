@@ -1,2 +1,2 @@
 Shubham OS build trigger
-Run 7: 2026-11-21 10:02 IST - saari files asli text me fix karke Muse ne start kiya
+Run 8: 2026-11-21 shaam - v2 wallpaper fix (stock + undercover wallpaper replace, last-image config)
