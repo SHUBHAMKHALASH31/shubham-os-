@@ -1,3 +1,3 @@
-VERSION=5
-NOTES=Shubham OS 5: mode switch ka permanent fix — undercover se pehle xfconfd aur panel apne aap pakke hote hain, "only works on Xfce desktop" wala error ab nahi aayega.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-5.sh
+VERSION=6
+NOTES=Shubham OS 6: menu me "Kali Live user" ki jagah "Shubham OS Live" naam + neeche Mac-style dock (bade icons ke saath). Boot wala dragon is update se nahi badlega — wo ISO ke andar band hai.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-6.sh
