@@ -1,3 +1,3 @@
-VERSION=7
-NOTES=Shubham OS 7: upar wala main bar (menu, apps, ghadi) ab NEECHE aayega, Windows ki tarah. Update 6 wali chhoti dock strip hata di gayi hai. Naam wala fix (Shubham OS Live) bhi saath hai.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-7.sh
+VERSION=8
+NOTES=Shubham OS 8: SURAKSHIT fix — Update 7 me panel-restart wala command ulta pad gaya tha, isliye 8 me koi restart nahi hota. Upar wala main bar ab bina khatre ke NEECHE aayega (update ke baad ek baar logout-login karna hai). Kharab dock strip bhi gayab rahegi.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-8.sh
