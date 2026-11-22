@@ -1,0 +1,17 @@
+#!/bin/bash
+# Shubham OS — swagat awaaz. Session shuru hote hi EK baar chalta hai (autostart se).
+# Live: OS on -> desktop -> awaaz. Install: login/lock screen ke BAAD -> desktop -> awaaz.
+# Lock screen par ya usse pehle kabhi nahi bajta (autostart session ke saath chalta hai).
+sleep 2
+WAV=/usr/share/shubham-os/greeting.wav
+[ -f "$WAV" ] || exit 0
+if command -v paplay >/dev/null 2>&1; then
+  paplay "$WAV" >/dev/null 2>&1
+elif command -v aplay >/dev/null 2>&1; then
+  aplay -q "$WAV" >/dev/null 2>&1
+elif command -v ffplay >/dev/null 2>&1; then
+  ffplay -nodisp -autoexit -loglevel quiet "$WAV" >/dev/null 2>&1
+elif command -v mpv >/dev/null 2>&1; then
+  mpv --no-video "$WAV" >/dev/null 2>&1
+fi
+exit 0
