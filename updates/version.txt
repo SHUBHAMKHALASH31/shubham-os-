@@ -1,3 +1,3 @@
-VERSION=12
-NOTES=Shubham OS 12: Fixes Batch 1 - the feature commands (shubham-help, Net Fix, History File, WiFi Password, Net Speed, Error Guide) now install fully, with a built-in check at the end.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-12.sh
+VERSION=13
+NOTES=Shubham OS 13: Menu fix - the Shubham OS Special Features section is now written into the system menu file, so it shows in the menu after a restart.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-13.sh
