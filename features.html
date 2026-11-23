@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shubham OS — Special Features</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; }
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: radial-gradient(1200px 700px at 50% -10%, #1b2340 0%, #0b0e14 55%, #07090f 100%);
+    color:#f2f2f2; overflow:hidden;
+  }
+  .gold { color:#f5c542; }
+  #progress { position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,#b8860b,#f5c542); width:0%; transition:width .4s ease; z-index:50; }
+  .slide {
+    position:absolute; inset:0; display:none; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    padding:32px 20px 90px;
+  }
+  .slide.active { display:flex; animation:slideIn .55s cubic-bezier(.22,.9,.3,1) both; }
+  @keyframes slideIn { from { opacity:0; transform:translateX(46px) scale(.985); } to { opacity:1; transform:none; } }
+  .shield { font-size:84px; filter:drop-shadow(0 0 22px rgba(245,197,66,.45)); animation:float 3.2s ease-in-out infinite; }
+  @keyframes float { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
+  h1 { font-size:clamp(38px,7vw,72px); letter-spacing:2px; font-weight:800; }
+  h1 .os { color:#f5c542; }
+  h2 { font-size:clamp(28px,5vw,46px); font-weight:800; margin-bottom:14px; }
+  .sub { font-size:clamp(16px,2.6vw,22px); color:#cfd6e4; max-width:760px; line-height:1.55; }
+  .tag { margin-top:18px; padding:8px 18px; border:1.5px solid #f5c542; border-radius:999px; color:#f5c542; font-weight:700; letter-spacing:1px; font-size:14px; text-transform:uppercase; }
+  .langgrid { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-top:28px; }
+  .langbtn {
+    background:rgba(245,197,66,.07); border:1.5px solid #f5c542; color:#fff;
+    font-size:20px; font-weight:700; padding:16px 30px; border-radius:14px; cursor:pointer;
+    transition:all .2s ease; min-width:170px;
+  }
+  .langbtn:hover { background:#f5c542; color:#111; transform:translateY(-3px); box-shadow:0 10px 24px rgba(245,197,66,.35); }
+  .langbtn small { display:block; font-size:13px; font-weight:400; opacity:.75; margin-top:4px; }
+  .about { text-align:left; max-width:720px; }
+  .about li { font-size:clamp(17px,2.6vw,22px); line-height:1.5; margin:14px 0; list-style:none; }
+  .about li::before { content:"✔ "; color:#f5c542; font-weight:800; }
+  code, .cmd {
+    font-family: Consolas, "Courier New", monospace; background:#11182b; border:1px solid #31406b;
+    border-radius:8px; padding:3px 10px; color:#ffd968; font-size:.92em; white-space:nowrap;
+  }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; max-width:900px; width:100%; margin-top:10px; }
+  .card {
+    background:rgba(255,255,255,.045); border:1px solid rgba(245,197,66,.35); border-radius:14px;
+    padding:16px 8px; cursor:pointer; transition:all .2s ease;
+  }
+  .card:hover { background:rgba(245,197,66,.14); transform:translateY(-3px); }
+  .card .ic { font-size:30px; display:block; margin-bottom:6px; }
+  .card .nm { font-size:15px; font-weight:700; }
+  .icon { font-size:92px; margin-bottom:10px; filter:drop-shadow(0 0 18px rgba(245,197,66,.35)); }
+  .fname { font-size:clamp(32px,6vw,54px); font-weight:800; }
+  .fdesc { font-size:clamp(18px,3vw,25px); color:#dbe2f0; max-width:700px; line-height:1.5; margin-top:12px; }
+  .cmdbox { margin-top:26px; font-size:clamp(17px,3vw,24px); }
+  .cmdbox .lbl { display:block; font-size:13px; letter-spacing:2px; color:#9fb0d0; margin-bottom:8px; text-transform:uppercase; }
+  .bullets { text-align:left; max-width:720px; margin-top:8px; }
+  .bullets li { font-size:clamp(16px,2.5vw,21px); line-height:1.5; margin:12px 0; list-style:none; }
+  .bullets li::before { content:"▸ "; color:#f5c542; font-weight:800; }
+  .cmdlist { text-align:left; max-width:760px; width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(245,197,66,.3); border-radius:14px; padding:22px 26px; }
+  .cmdlist div { font-family:Consolas,"Courier New",monospace; font-size:clamp(13.5px,2.2vw,17.5px); line-height:1.85; color:#e8ecf5; white-space:nowrap; overflow-x:auto; }
+  .cmdlist b { color:#ffd968; font-weight:700; }
+  .nav { position:fixed; bottom:22px; left:0; right:0; display:flex; justify-content:center; align-items:center; gap:18px; z-index:40; }
+  .nav button {
+    background:rgba(245,197,66,.08); border:1.5px solid #f5c542; color:#f5c542; font-size:17px; font-weight:700;
+    padding:10px 22px; border-radius:999px; cursor:pointer; transition:all .2s ease;
+  }
+  .nav button:hover { background:#f5c542; color:#111; }
+  .nav button:disabled { opacity:.3; cursor:default; background:transparent; color:#f5c542; }
+  #counter { color:#9fb0d0; font-size:14px; min-width:64px; text-align:center; }
+  .langswitch { position:fixed; top:14px; right:16px; z-index:40; }
+  .langswitch button { background:transparent; border:1px solid #31406b; color:#cfd6e4; border-radius:999px; padding:7px 14px; cursor:pointer; font-size:13.5px; }
+  .langswitch button:hover { border-color:#f5c542; color:#f5c542; }
+  .bigbtn { display:inline-block; margin-top:26px; background:#f5c542; color:#111; font-weight:800; font-size:19px; padding:14px 34px; border-radius:999px; text-decoration:none; transition:all .2s ease; }
+  .bigbtn:hover { transform:translateY(-3px); box-shadow:0 12px 28px rgba(245,197,66,.4); }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="langswitch" id="langswitch" style="display:none"><button onclick="go(0)">🌐 Language</button></div>
+
+<!-- 0 : LANGUAGE -->
+<section class="slide active">
+  <div class="shield">🛡️</div>
+  <h1>SHUBHAM <span class="os">OS</span></h1>
+  <p class="sub" style="margin-top:10px">Choose your language</p>
+  <div class="langgrid">
+    <button class="langbtn" onclick="setLang('en')">English<small>English</small></button>
+    <button class="langbtn" onclick="setLang('hi')">हिन्दी<small>Hindi</small></button>
+    <button class="langbtn" onclick="setLang('gu')">ગુજરાતી<small>Gujarati</small></button>
+    <button class="langbtn" onclick="setLang('es')">Español<small>Spanish</small></button>
+  </div>
+</section>
+
+<!-- 1 : TITLE -->
+<section class="slide">
+  <div class="shield">🛡️</div>
+  <h1>SHUBHAM <span class="os">OS</span></h1>
+  <p class="sub" data-t="title_sub"></p>
+  <div class="tag" data-t="title_tag"></div>
+</section>
+
+<!-- 2 : WHAT IS -->
+<section class="slide">
+  <h2 data-t="what_title"></h2>
+  <ul class="about">
+    <li data-t="a1"></li>
+    <li data-t="a2"></li>
+    <li data-t="a3"></li>
+  </ul>
+</section>
+
+<!-- 3 : OVERVIEW -->
+<section class="slide">
+  <h2 data-t="feat_title"></h2>
+  <p class="sub" data-t="feat_sub" style="margin-bottom:16px"></p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- LAB DETAIL (inserted after feature slides by script order) -->
+<section class="slide" id="labslide">
+  <h2 data-t="lab_title"></h2>
+  <ul class="bullets">
+    <li data-t="lab1"></li>
+    <li data-t="lab2"></li>
+    <li data-t="lab3"></li>
+    <li data-t="lab4"></li>
+  </ul>
+</section>
+
+<!-- ALL COMMANDS -->
+<section class="slide">
+  <h2 data-t="cmds_title"></h2>
+  <p class="sub" data-t="cmds_sub" style="margin-bottom:16px"></p>
+  <div class="cmdlist">
+    <div><b>shubham-windows</b> (full Windows look, Kali tools hidden)</div>
+    <div><b>shubham-kali</b> (full Kali mode, all tools back)</div>
+    <div><b>shubham-netfix</b> (fix internet problems)</div>
+    <div><b>shubham-history</b> (save all commands in one txt file)</div>
+    <div><b>shubham-phone</b> (connect phone without cable)</div>
+    <div><b>shubham-locker</b> (open your password file locker)</div>
+    <div><b>shubham-record</b> (record your screen)</div>
+    <div><b>shubham-guest</b> (open guest mode)</div>
+    <div><b>shubham-clean</b> (make PC light and fast)</div>
+    <div><b>shubham-wifi</b> (show WiFi password)</div>
+    <div><b>shubham-recover</b> (bring back a deleted file)</div>
+    <div><b>shubham-error</b> (understand any error in simple words)</div>
+    <div><b>shubham-lab</b> (open the practice lab)</div>
+    <div><b>shubham-live</b> (show your screen live)</div>
+    <div><b>shubham-speed</b> (check internet speed)</div>
+    <div><b>shubham-carry</b> (carry your OS in a pen drive)</div>
+    <div><b>shubham-help</b> (see all commands)</div>
+  </div>
+</section>
+
+<!-- END -->
+<section class="slide">
+  <div class="shield">🛡️</div>
+  <h2 data-t="get_title"></h2>
+  <p class="sub" data-t="get_line"></p>
+  <a class="bigbtn" href="https://github.com/SHUBHAMKHALASH31/shubham-os-" target="_blank" rel="noopener" data-t="get_btn"></a>
+  <p class="sub" style="margin-top:26px; font-size:15px; color:#9fb0d0" data-t="by_line"></p>
+</section>
+
+<div class="nav" id="nav" style="display:none">
+  <button id="prevb" onclick="go(cur-1)"></button>
+  <span id="counter"></span>
+  <button id="nextb" onclick="go(cur+1)"></button>
+</div>
+
+<script>
+var FEATURES = [
+  ["🔧","Net Fix","shubham-netfix","f1"],
+  ["📝","History File","shubham-history","f2"],
+  ["🌐","Google Chrome",null,"f3"],
+  ["📱","Phone Connect","shubham-phone","f4"],
+  ["🔒","Data Locker","shubham-locker","f5"],
+  ["🎥","Screen Record","shubham-record","f6"],
+  ["🙈","Guest Mode","shubham-guest","f7"],
+  ["🧹","Speed Up PC","shubham-clean","f8"],
+  ["📶","WiFi Password","shubham-wifi","f9"],
+  ["♻️","File Recovery","shubham-recover","f10"],
+  ["🩹","Error Guide","shubham-error","f11"],
+  ["🧪","Practice Lab","shubham-lab","f12"],
+  ["📺","Live Screen","shubham-live","f13"],
+  ["🚀","Net Speed","shubham-speed","f14"],
+  ["🎒","Carry My OS","shubham-carry","f15"]
+];
+var T = {
+en:{title_sub:"The power of Kali. The look of Windows. One system, two worlds.",title_tag:"Special Features Inside",what_title:"What is Shubham OS?",a1:"Dual Mode system — full Kali power with a clean Windows look.",a2:"One command switches everything: shubham-windows / shubham-kali",a3:"Made for students and new users — everything simple, everything one click.",feat_title:"Shubham OS Special Features",feat_sub:"These features are only in Shubham OS. Tap any feature to see it.",cmd_lbl:"Command",chrome_note:"Pre-installed — ready from day one",lab_title:"Practice Lab — In Detail",lab1:"Real Kali tools. Targets live inside the lab only — nothing outside is touched.",lab2:"Import your own notes and practice on them. A sample notes file shows the right format.",lab3:"Start from basic commands, then go step by step to the big targets.",lab4:"Save your lab, reset it, or start a new one — your old lab stays safe.",cmds_title:"All Commands",cmds_sub:"Run shubham-help in the terminal to see this list any time.",get_title:"Get Shubham OS",get_line:"Download the ISO and all files from the GitHub page.",get_btn:"Open GitHub Page",by_line:"Made by Shubham",back:"← Back",next:"Next →",
+f1:"Internet problem? One click — it checks and fixes it for you.",f2:"One command makes a txt file of all your terminal commands, from first to last.",f3:"Chrome comes ready inside Shubham OS. Kali does not give you Chrome.",f4:"Connect your phone without a cable. Move files both ways in one click.",f5:"A password locker for your important files. No password, no open.",f6:"Record your screen in one click. No extra app needed.",f7:"A guest can use your PC, but your files and history stay hidden.",f8:"PC slow or hot? One click makes it light and fast.",f9:"Forgot your WiFi password? One click shows it.",f10:"Deleted a file by mistake? Bring it back in one click.",f11:"Any error, explained in simple words — in your own language.",f12:"A full practice world inside the OS. Real commands, safe targets.",f13:"Show your screen live to anyone. They can only watch, not touch.",f14:"See your real internet speed, and who is using it the most.",f15:"Your full system in a pen drive. Open it on any PC."},
+hi:{title_sub:"Kali की ताक़त। Windows जैसा लुक। एक सिस्टम, दो दुनिया।",title_tag:"अंदर Special Features",what_title:"Shubham OS क्या है?",a1:"Dual Mode सिस्टम — Kali की पूरी ताक़त, साफ़ Windows जैसा लुक।",a2:"एक कमांड से सब बदलता है: shubham-windows / shubham-kali",a3:"Students और नए users के लिए — सब आसान, सब एक क्लिक में।",feat_title:"Shubham OS Special Features",feat_sub:"ये features सिर्फ़ Shubham OS में हैं। किसी feature पर tap करके देखो।",cmd_lbl:"कमांड",chrome_note:"पहले से installed — पहले दिन से तैयार",lab_title:"Practice Lab — विस्तार से",lab1:"असली Kali tools। टारगेट सिर्फ़ lab के अंदर — बाहर कुछ नहीं छूता।",lab2:"अपनी notes import करके उन्हीं पर practice करो। Sample notes file सही format दिखाती है।",lab3:"Basic commands से शुरू करो, फिर step-by-step बड़े targets तक जाओ।",lab4:"अपनी lab save करो, reset करो, या नई शुरू करो — पुरानी lab safe रहेगी।",cmds_title:"सारे Commands",cmds_sub:"Terminal में shubham-help चलाओ — यह list कभी भी दिख जाएगी।",get_title:"Shubham OS पाओ",get_line:"ISO और सारी files GitHub page से download करो।",get_btn:"GitHub Page खोलो",by_line:"Shubham द्वारा बनाया गया",back:"← पीछे",next:"आगे →",
+f1:"इंटरनेट में दिक्कत? एक क्लिक — यह खुद चेक करके ठीक कर देगा।",f2:"एक कमांड — तुम्हारे सारे टर्मिनल कमांड्स की txt फ़ाइल तैयार, पहले से आख़िर तक।",f3:"Chrome Shubham OS के अंदर पहले से तैयार मिलता है। Kali में Chrome नहीं मिलता।",f4:"बिना केबल फ़ोन जोड़ो। फ़ाइलें दोनों तरफ़ एक क्लिक में भेजो।",f5:"तुम्हारी ज़रूरी फ़ाइलों के लिए पासवर्ड वाला लॉकर। बिना पासवर्ड नहीं खुलेगा।",f6:"एक क्लिक में स्क्रीन रिकॉर्ड करो। अलग ऐप की ज़रूरत नहीं।",f7:"मेहमान तुम्हारा PC इस्तेमाल कर सकता है, लेकिन तुम्हारी फ़ाइलें और हिस्ट्री छुपी रहेगी।",f8:"PC स्लो या गर्म? एक क्लिक में हल्का और तेज़।",f9:"WiFi का पासवर्ड भूल गए? एक क्लिक में दिख जाएगा।",f10:"गलती से फ़ाइल डिलीट हो गई? एक क्लिक में वापस ले आओ।",f11:"कोई भी एरर, आसान शब्दों में — तुम्हारी अपनी भाषा में।",f12:"OS के अंदर पूरी प्रैक्टिस दुनिया। असली कमांड्स, सेफ़ टारगेट।",f13:"अपनी स्क्रीन किसी को भी लाइव दिखाओ। वह सिर्फ़ देख सकता है, छू नहीं सकता।",f14:"अपनी असली इंटरनेट स्पीड देखो, और कौन सबसे ज़्यादा नेट खा रहा है।",f15:"तुम्हारा पूरा सिस्टम पेन ड्राइव में। किसी भी PC पर खोलो।"},
+gu:{title_sub:"Kali ની તાકાત. Windows જેવો લુક. એક સિસ્ટમ, બે દુનિયા.",title_tag:"અંદર Special Features",what_title:"Shubham OS શું છે?",a1:"Dual Mode સિસ્ટમ — Kali ની પૂરી તાકાત, સાફ Windows જેવો લુક.",a2:"એક કમાન્ડથી બધું બદલાય છે: shubham-windows / shubham-kali",a3:"Students અને નવા users માટે — બધું સરળ, બધું એક ક્લિકમાં.",feat_title:"Shubham OS Special Features",feat_sub:"આ features ફક્ત Shubham OS માં છે. કોઈ feature પર tap કરીને જુઓ.",cmd_lbl:"કમાન્ડ",chrome_note:"પહેલાથી installed — પહેલા દિવસથી તૈયાર",lab_title:"Practice Lab — વિગતવાર",lab1:"અસલી Kali tools. ટારગેટ ફક્ત lab ની અંદર — બહાર કંઈ અડકતું નથી.",lab2:"તમારી notes import કરીને એના પર જ practice કરો. Sample notes file સાચો format બતાવે છે.",lab3:"Basic commands થી શરૂ કરો, પછી step-by-step મોટા targets સુધી જાઓ.",lab4:"તમારી lab save કરો, reset કરો, કે નવી શરૂ કરો — જૂની lab safe રહેશે.",cmds_title:"બધા Commands",cmds_sub:"Terminal માં shubham-help ચલાવો — આ list ગમે ત્યારે દેખાશે.",get_title:"Shubham OS મેળવો",get_line:"ISO અને બધી files GitHub page પરથી download કરો.",get_btn:"GitHub Page ખોલો",by_line:"Shubham દ્વારા બનાવેલ",back:"← પાછળ",next:"આગળ →",
+f1:"ઇન્ટરનેટમાં તકલીફ? એક ક્લિક — આ જાતે ચેક કરીને ઠીક કરી દેશે.",f2:"એક કમાન્ડ — તમારા બધા ટર્મિનલ કમાન્ડ્સની txt ફાઇલ તૈયાર, પહેલાથી છેલ્લા સુધી.",f3:"Chrome Shubham OS ની અંદર પહેલાથી તૈયાર મળે છે. Kali માં Chrome નથી મળતું.",f4:"કેબલ વગર ફોન જોડો. ફાઇલો બંને તરફ એક ક્લિકમાં મોકલો.",f5:"તમારી જરૂરી ફાઇલો માટે પાસવર્ડ વાળું લોકર. પાસવર્ડ વગર નહીં ખુલે.",f6:"એક ક્લિકમાં સ્ક્રીન રેકોર્ડ કરો. અલગ એપની જરૂર નથી.",f7:"મહેમાન તમારું PC વાપરી શકે છે, પણ તમારી ફાઇલો અને હિસ્ટ્રી છુપાયેલી રહેશે.",f8:"PC સ્લો કે ગરમ? એક ક્લિકમાં હલકું અને ઝડપી.",f9:"WiFi નો પાસવર્ડ ભૂલી ગયા? એક ક્લિકમાં દેખાઈ જશે.",f10:"ભૂલથી ફાઇલ ડિલીટ થઈ ગઈ? એક ક્લિકમાં પાછી લઈ આવો.",f11:"કોઈ પણ એરર, સરળ શબ્દોમાં — તમારી પોતાની ભાષામાં.",f12:"OS ની અંદર આખી પ્રેક્ટિસ દુનિયા. અસલી કમાન્ડ્સ, સેફ ટારગેટ.",f13:"તમારી સ્ક્રીન કોઈને પણ લાઇવ બતાવો. તે ફક્ત જોઈ શકે છે, અડકી નહીં શકે.",f14:"તમારી અસલી ઇન્ટરનેટ સ્પીડ જુઓ, અને કોણ સૌથી વધારે નેટ વાપરે છે.",f15:"તમારો પૂરો સિસ્ટમ પેન ડ્રાઇવમાં. કોઈ પણ PC પર ખોલો."},
+es:{title_sub:"La potencia de Kali. El aspecto de Windows. Un sistema, dos mundos.",title_tag:"Funciones especiales dentro",what_title:"¿Qué es Shubham OS?",a1:"Sistema de doble modo: toda la potencia de Kali con el aspecto limpio de Windows.",a2:"Un comando lo cambia todo: shubham-windows / shubham-kali",a3:"Hecho para estudiantes y usuarios nuevos: todo simple, todo en un clic.",feat_title:"Funciones Especiales de Shubham OS",feat_sub:"Estas funciones solo están en Shubham OS. Toca una para verla.",cmd_lbl:"Comando",chrome_note:"Preinstalado — listo desde el primer día",lab_title:"Laboratorio de Práctica — En detalle",lab1:"Herramientas reales de Kali. Los objetivos viven solo dentro del laboratorio.",lab2:"Importa tus propias notas y practica con ellas. Un archivo de ejemplo muestra el formato correcto.",lab3:"Empieza con comandos básicos y avanza paso a paso hasta los objetivos grandes.",lab4:"Guarda tu laboratorio, reinícialo o empieza uno nuevo: el anterior queda seguro.",cmds_title:"Todos los comandos",cmds_sub:"Ejecuta shubham-help en la terminal para ver esta lista cuando quieras.",get_title:"Consigue Shubham OS",get_line:"Descarga la ISO y todos los archivos desde la página de GitHub.",get_btn:"Abrir la página de GitHub",by_line:"Hecho por Shubham",back:"← Atrás",next:"Siguiente →",
+f1:"¿Problemas de internet? Un clic y se revisa y se arregla solo.",f2:"Un comando crea un archivo txt con todos tus comandos, del primero al último.",f3:"Chrome viene listo dentro de Shubham OS. Kali no incluye Chrome.",f4:"Conecta tu teléfono sin cable. Mueve archivos en un clic.",f5:"Una caja con contraseña para tus archivos importantes. Sin contraseña, no se abre.",f6:"Graba tu pantalla con un clic. No necesitas otra app.",f7:"Un invitado puede usar tu PC, pero tus archivos quedan ocultos.",f8:"¿PC lento o caliente? Un clic y queda ligero y rápido.",f9:"¿Olvidaste tu contraseña WiFi? Un clic y aparece.",f10:"¿Borraste un archivo por error? Recupéralo con un clic.",f11:"Cualquier error, explicado en palabras simples, en tu idioma.",f12:"Un mundo de práctica completo dentro del sistema. Comandos reales, objetivos seguros.",f13:"Muestra tu pantalla en vivo a quien quieras. Solo pueden mirar, no tocar.",f14:"Mira tu velocidad real de internet y quién lo usa más.",f15:"Todo tu sistema en un pen drive. Ábrelo en cualquier PC."}
+};
+var LANG='en', cur=0, slides=[];
+(function build(){
+  var grid=document.getElementById('grid');
+  var overview=grid.closest('.slide');
+  var anchor=overview;
+  FEATURES.forEach(function(f,i){
+    var card=document.createElement('div'); card.className='card';
+    card.innerHTML='<span class="ic">'+f[0]+'</span><span class="nm">'+f[1]+'</span>';
+    card.onclick=function(){ go(4+i); };
+    grid.appendChild(card);
+    var s=document.createElement('section'); s.className='slide';
+    var cmdhtml = f[2]
+      ? '<div class="cmdbox"><span class="lbl" data-t="cmd_lbl"></span><span class="cmd">'+f[2]+'</span></div>'
+      : '<div class="cmdbox"><span class="tag" data-t="chrome_note"></span></div>';
+    s.innerHTML='<div class="icon">'+f[0]+'</div><div class="fname">'+f[1]+'</div><p class="fdesc" data-t="'+f[3]+'"></p>'+cmdhtml;
+    anchor.after(s); anchor=s;
+  });
+  slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+})();
+function applyLang(){
+  var d=T[LANG];
+  document.querySelectorAll('[data-t]').forEach(function(el){
+    var k=el.getAttribute('data-t'); if(d[k]) el.textContent=d[k];
+  });
+  document.getElementById('prevb').textContent=d.back;
+  document.getElementById('nextb').textContent=d.next;
+  document.documentElement.lang=LANG;
+}
+function setLang(l){ LANG=l; applyLang(); document.getElementById('nav').style.display='flex'; document.getElementById('langswitch').style.display='block'; go(1); }
+function go(n){
+  if(!slides.length) return;
+  cur=Math.max(0,Math.min(n,slides.length-1));
+  slides.forEach(function(s,i){ s.classList.toggle('active', i===cur); });
+  document.getElementById('progress').style.width=(slides.length>1 ? (cur/(slides.length-1))*100 : 0)+'%';
+  document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('prevb').disabled=(cur===0);
+  document.getElementById('nextb').disabled=(cur===slides.length-1);
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight') go(cur+1);
+  if(e.key==='ArrowLeft') go(cur-1);
+});
+var tx=null;
+document.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; });
+document.addEventListener('touchend',function(e){
+  if(tx===null) return; var dx=e.changedTouches[0].clientX-tx;
+  if(dx<-50) go(cur+1); if(dx>50) go(cur-1); tx=null;
+});
+applyLang(); go(0);
+</script>
+</body>
+</html>
