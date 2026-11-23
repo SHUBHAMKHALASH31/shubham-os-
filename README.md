@@ -1,5 +1,8 @@
 # 👑 Shubham OS — Dual Mode
 
+### 🎬 [See All Special Features — Click Here](https://shubhamkhalash31.github.io/shubham-os-/features.html)
+_Presentation khul jayegi — pehle apni language choose karo (English / Hindi / Gujarati / Spanish)._
+
 **Ek OS, do mode:**
 - **Windows Mode** — Windows jaisa saaf look, halki theme, golden shield
 - **Kali Mode** — pura Kali Linux, saare tools, dark theme
