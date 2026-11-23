@@ -1,0 +1,33 @@
+#!/bin/bash
+# Shubham OS - History File: saves all terminal commands (first to last) in one txt file.
+# It only asks where to save the file.
+echo "History File - all your terminal commands in one file."
+echo ""
+read -r -p "Where to save? Press Enter for Desktop, or type a folder path: " DIR
+if [ -z "$DIR" ]; then
+  DIR="$HOME/Desktop"
+fi
+mkdir -p "$DIR" 2>/dev/null
+OUT="$DIR/terminal-history.txt"
+
+TMP="$(mktemp)"
+# Bash history.
+if [ -f "$HOME/.bash_history" ]; then
+  cat "$HOME/.bash_history" >> "$TMP"
+fi
+# Zsh history (clean its time marks).
+if [ -f "$HOME/.zsh_history" ]; then
+  sed 's/^: [0-9][0-9]*:[0-9][0-9]*;//' "$HOME/.zsh_history" >> "$TMP"
+fi
+
+if [ ! -s "$TMP" ]; then
+  echo "No commands found yet. Use the terminal first, then run this again."
+  rm -f "$TMP"
+  exit 0
+fi
+
+cat "$TMP" > "$OUT"
+COUNT="$(wc -l < "$OUT")"
+rm -f "$TMP"
+echo "Saved: $OUT"
+echo "Total commands in the file: $COUNT"

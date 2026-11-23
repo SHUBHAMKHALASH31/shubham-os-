@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=WiFi Password
+Comment=Show a saved WiFi password
+Exec=xfce4-terminal --hold -e shubham-wifi
+Icon=network-wireless
+Terminal=false
+Categories=X-Shubham-Special;

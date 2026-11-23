@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Net Fix
+Comment=Fix internet problems in one click
+Exec=xfce4-terminal --hold -e shubham-netfix
+Icon=network-wireless
+Terminal=false
+Categories=X-Shubham-Special;

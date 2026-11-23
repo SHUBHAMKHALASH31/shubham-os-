@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Error Guide
+Comment=Understand any error in simple words
+Exec=xfce4-terminal --hold -e shubham-error
+Icon=dialog-information
+Terminal=false
+Categories=X-Shubham-Special;

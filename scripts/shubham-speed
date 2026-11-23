@@ -1,0 +1,33 @@
+#!/bin/bash
+# Shubham OS - Net Speed: tests internet speed in one command.
+echo "Testing your internet speed, please wait..."
+
+if command -v speedtest-cli >/dev/null 2>&1; then
+  speedtest-cli --simple
+  exit 0
+fi
+if python3 -c "import speedtest" >/dev/null 2>&1; then
+  python3 -m speedtest --simple
+  exit 0
+fi
+
+# Quick test without any extra tool: ping + download speed.
+PING=""
+if command -v ping >/dev/null 2>&1; then
+  PING="$(ping -c 3 -W 3 8.8.8.8 2>/dev/null | tail -n 1 | awk -F/ '{print $5}')"
+fi
+if [ -n "$PING" ]; then
+  echo "Ping: ${PING} ms"
+fi
+
+BPS="$(curl -o /dev/null -s -w '%{speed_download}' --max-time 30 'https://speed.cloudflare.com/__down?bytes=10000000' 2>/dev/null)"
+if [ -z "$BPS" ] || [ "$BPS" = "0" ] || [ "$BPS" = "0.000" ]; then
+  BPS="$(curl -o /dev/null -s -w '%{speed_download}' --max-time 30 'https://proof.ovh.net/files/10Mb.dat' 2>/dev/null)"
+fi
+if [ -n "$BPS" ] && [ "$BPS" != "0" ] && [ "$BPS" != "0.000" ]; then
+  awk -v b="$BPS" 'BEGIN { printf "Download: %.1f Mbps\n", (b*8)/1000000 }'
+  echo "(Quick test - download and ping only.)"
+else
+  echo "The speed test could not run. Check your internet and try again."
+  exit 1
+fi

@@ -1,3 +1,3 @@
-VERSION=10
-NOTES=Shubham OS 10: The welcome voice has been removed. Nothing else changes.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-10.sh
+VERSION=11
+NOTES=Shubham OS 11: New - Shubham OS Special Features menu with Net Fix, History File, WiFi Password, Net Speed and Error Guide. Type shubham-help in a terminal to see all commands.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-11.sh

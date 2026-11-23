@@ -1,0 +1,39 @@
+#!/bin/bash
+# Shubham OS - WiFi Password: shows the password of a saved WiFi network.
+if ! command -v nmcli >/dev/null 2>&1; then
+  echo "NetworkManager is not found on this PC, so saved WiFi passwords cannot be read."
+  exit 1
+fi
+
+mapfile -t CONNS < <(nmcli -t -f NAME,TYPE connection show 2>/dev/null | awk -F: '$2 ~ /wireless/ {print $1}')
+if [ "${#CONNS[@]}" -eq 0 ]; then
+  echo "No saved WiFi networks found on this PC."
+  exit 0
+fi
+
+echo "Saved WiFi networks on this PC:"
+i=1
+for c in "${CONNS[@]}"; do
+  echo "  $i) $c"
+  i=$((i+1))
+done
+echo ""
+read -r -p "Type the number of the WiFi: " N
+case "$N" in
+  ''|*[!0-9]*) echo "That is not a number. Run it again."; exit 1 ;;
+esac
+if [ "$N" -lt 1 ] || [ "$N" -gt "${#CONNS[@]}" ]; then
+  echo "That number is not in the list. Run it again."
+  exit 1
+fi
+
+NAME="${CONNS[$((N-1))]}"
+echo ""
+echo "WiFi name: $NAME"
+echo "Your PC password may be asked - it is for your safety."
+PASS="$(sudo nmcli -s -g 802-11-wireless-security.psk connection show "$NAME" 2>/dev/null)"
+if [ -n "$PASS" ]; then
+  echo "Password: $PASS"
+else
+  echo "No saved password found for this WiFi (open network, or the password was never saved)."
+fi

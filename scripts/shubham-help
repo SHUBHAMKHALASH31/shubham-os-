@@ -1,0 +1,29 @@
+#!/bin/bash
+# Shubham OS - Help: shows all Shubham OS commands in one list.
+cat << 'EOF'
+Shubham OS - All Commands
+
+shubham-windows  (full Windows look, Kali tools hidden)
+shubham-kali     (full Kali mode, all tools back)
+
+SPECIAL FEATURES
+shubham-netfix   (fix internet problems)
+shubham-history  (save all terminal commands in one txt file)
+shubham-phone    (connect phone without cable)
+shubham-locker   (lock files with a password)
+shubham-record   (record your screen)
+shubham-guest    (open guest mode)
+shubham-clean    (clean junk, make PC light and fast)
+shubham-wifi     (show a saved WiFi password)
+shubham-recover  (bring back a deleted file)
+shubham-error    (understand any error in simple words)
+shubham-lab      (open the practice lab)
+shubham-live     (show your screen live)
+shubham-speed    (check internet speed)
+shubham-carry    (carry your OS in a pen drive)
+shubham-doctor   (full PC check and repair)
+shubham-ghost    (hide your identity on the net)
+
+You can also open every feature from the menu:
+Shubham OS Special Features
+EOF
