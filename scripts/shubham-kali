@@ -1,12 +1,12 @@
 #!/bin/bash
-# Shubham OS — Kali Mode wapas ON
-# Chhupaye gaye tools wapas, undercover band, state sahi.
+# Shubham OS — Kali Mode back ON
+# Hidden tools restored, undercover off, state corrected.
 
 STATE_FILE="$HOME/.shubham-os-mode"
 CURRENT="kali"
 [ -f "$STATE_FILE" ] && CURRENT=$(cat "$STATE_FILE")
 if [ "$CURRENT" != "windows" ]; then
-  echo "Shubham OS: system pehle se Kali Mode me hai."
+  echo "Shubham OS: the system is already in Kali Mode."
   exit 0
 fi
 
@@ -19,8 +19,8 @@ if [ -f "$MANIFEST" ]; then
   rm -f "$MANIFEST"
 fi
 
-# Undercover ka apna check hai: xfconfd + xfce4-panel dono chalte hone chahiye.
-# Ek bhi band ho to wo "only works on Xfce desktop" bolke ruk jata hai — pehle dono ko pakka karo.
+# Undercover has its own check: xfconfd and xfce4-panel must both be running.
+# If either one is stopped, it stops with "only works on Xfce desktop" — make sure both are running first.
 ensure_xfce_processes() {
   if ! pgrep -u "$(id -un)" xfconfd >/dev/null 2>&1; then
     (xfconfd >/dev/null 2>&1 &)
@@ -33,8 +33,8 @@ ensure_xfce_processes() {
 ensure_xfce_processes
 
 if command -v kali-undercover >/dev/null 2>&1; then
-  DESKTOP_SESSION=xfce XDG_CURRENT_DESKTOP=XFCE kali-undercover || echo "(undercover band karne me error — tools phir bhi wapas aa gaye hain)"
+  DESKTOP_SESSION=xfce XDG_CURRENT_DESKTOP=XFCE kali-undercover || echo "(error while turning off undercover — the tools are back anyway)"
 fi
 echo "kali" > "$STATE_FILE"
 xfce4-panel -r >/dev/null 2>&1 &
-echo "Shubham OS: Kali Mode ON — saare tools wapas. Windows look ke liye: shubham-windows"
+echo "Shubham OS: Kali Mode ON — all tools are back. For the Windows look: shubham-windows"

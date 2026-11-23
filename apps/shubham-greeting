@@ -1,7 +1,7 @@
 #!/bin/bash
-# Shubham OS — swagat awaaz. Session shuru hote hi EK baar chalta hai (autostart se).
-# Live: OS on -> desktop -> awaaz. Install: login/lock screen ke BAAD -> desktop -> awaaz.
-# Lock screen par ya usse pehle kabhi nahi bajta (autostart session ke saath chalta hai).
+# Shubham OS — welcome voice. Runs ONCE when the session starts (via autostart).
+# Live: OS on -> desktop -> voice. Install: AFTER the login/lock screen -> desktop -> voice.
+# It never plays on the lock screen or before it (autostart runs with the session).
 sleep 2
 WAV=/usr/share/shubham-os/greeting.wav
 [ -f "$WAV" ] || exit 0

@@ -1,5 +1,5 @@
 # Shubham OS — package list (live-build)
-# Kali ke saare tools (base system se aate hai) + Windows Mode ke roz ke apps
+# All Kali tools (come from the base system) + everyday apps for Windows Mode
 kali-linux-headless
 kali-desktop-xfce
 kali-undercover

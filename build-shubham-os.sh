@@ -1,44 +1,44 @@
 #!/bin/bash
 # ============================================================
 #  SHUBHAM OS — One-Shot Build Script
-#  Kali Linux par chalao — ye script khud:
-#    1) live-build install karegi
-#    2) Kali ka official live-build config legi
-#    3) Shubham OS ka branding, wallpaper, toggle commands jodegi
-#    4) ISO banayegi (Live + Install dono wali)
-#  Zaroorat: Kali machine/VM, internet, ~25 GB khali jagah,
-#             aur samay (pehli build me 1-3 ghante lag sakte hai)
+#  Run on Kali Linux — this script itself:
+#    1) installs live-build
+#    2) gets the official Kali live-build config
+#    3) adds the Shubham OS branding, wallpaper, toggle commands
+#    4) builds the ISO (with both Live + Install)
+#  Needs: Kali machine/VM, internet, ~25 GB free space,
+#             and time (the first build can take 1-3 hours)
 # ============================================================
 set -e
 cd "$(dirname "$0")"
 
 echo "==============================================="
-echo "  SHUBHAM OS BUILD SHURU HO RAHA HAI"
+echo "  SHUBHAM OS BUILD IS STARTING"
 echo "==============================================="
 
-# --- Check: Kali/Debian hai ya nahi ---
+# --- Check: is it Kali/Debian or not ---
 if ! command -v apt >/dev/null 2>&1; then
-  echo "ERROR: Ye script sirf Kali/Debian par chalegi."
+  echo "ERROR: This script only runs on Kali/Debian."
   exit 1
 fi
 
 # --- Step 1: Tools install ---
-echo "[1/5] live-build aur git install ho raha hai..."
+echo "[1/5] Installing live-build and git..."
 sudo apt update
 sudo apt install -y live-build git
 
-# --- Step 2: Kali ka official build config ---
-echo "[2/5] Kali live-build config download ho raha hai..."
+# --- Step 2: Official Kali build config ---
+echo "[2/5] Downloading the Kali live-build config..."
 if [ ! -d "shubham-os-build" ]; then
   git clone https://gitlab.com/kalilinux/build-scripts/live-build-config.git shubham-os-build
 fi
 cd shubham-os-build
 PACK_DIR="$(cd .. && pwd)"
-# Images base64 me aayi ho to PNG bana lo (GitHub text-push ke liye)
+# If images came in base64, make PNGs (for GitHub text-push)
 for B64 in images/*.b64; do [ -f "$B64" ] && base64 -d "$B64" > "${B64%.b64}"; done
 
-# --- Step 3: Apna samaan sahi jagah par ---
-echo "[3/5] Shubham OS ka branding joda ja raha hai..."
+# --- Step 3: Our files in the right place ---
+echo "[3/5] Adding the Shubham OS branding..."
 INC="kali-config/common/includes.chroot"
 mkdir -p "$INC/usr/share/backgrounds/shubham-os"
 mkdir -p "$INC/usr/share/pixmaps"
@@ -57,7 +57,7 @@ cp "$PACK_DIR/branding/os-release" "$INC/usr/lib/os-release"
 cp "$PACK_DIR/branding/hostname"   "$INC/etc/hostname"
 cp "$PACK_DIR/branding/motd"       "$INC/etc/motd"
 
-# Package list (XFCE variant me, na mile to common me)
+# Package list (in the XFCE variant, or in common if not found)
 if [ -d "kali-config/variant-xfce/package-lists" ]; then
   cp "$PACK_DIR/live-config/shubham.list.chroot" "kali-config/variant-xfce/package-lists/"
 else
@@ -66,14 +66,14 @@ else
 fi
 
 # --- Step 4: ISO build ---
-echo "[4/5] ISO ban rahi hai... isme samay lagega, machine band mat karna."
+echo "[4/5] The ISO is being built... this will take time, do not turn off the machine."
 ./build.sh --verbose --variant xfce || ./build.sh --verbose
 
 # --- Step 5: Result ---
-echo "[5/5] Build khatm!"
+echo "[5/5] Build finished!"
 echo "==============================================="
-echo "  SHUBHAM OS ki ISO yaha milegi:"
+echo "  The Shubham OS ISO will be found here:"
 ls -lh images/*.iso 2>/dev/null || find . -name "*.iso" -exec ls -lh {} \;
-echo "  Is ISO ko VMware me boot karke Live chalao,"
-echo "  ya Install karke try karo. Badhai ho!"
+echo "  Boot this ISO in VMware and run Live,"
+echo "  or Install it and try. Congratulations!"
 echo "==============================================="

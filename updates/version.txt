@@ -1,3 +1,3 @@
-VERSION=9
-NOTES=Shubham OS 9: SIRF swagat awaaz — OS chalu hote hi "Welcome to Shubham OS" bolega (bhaari Adam-jaisi awaaz). Live me desktop aate hi; Install me login/lock screen ke BAAD. Panel ko haath nahi lagaya gaya hai.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-9.sh
+VERSION=10
+NOTES=Shubham OS 10: The welcome voice has been removed. Nothing else changes.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-10.sh

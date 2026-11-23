@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=ShubhamOS Update Check
-Comment=Login par naya Shubham OS update check karta hai
+Comment=Checks for a new Shubham OS update at login
 Exec=/usr/local/bin/shubham-update-check
 Icon=shubham-os-logo
 Terminal=false

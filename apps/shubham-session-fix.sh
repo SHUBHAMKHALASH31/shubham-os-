@@ -1,6 +1,6 @@
 #!/bin/bash
-# Shubham OS — session ke andar lagne wale badlav (wallpaper, dock)
-# Update ke baad agle login par EK baar chalta hai, phir khud hat jata hai.
+# Shubham OS — changes applied inside the session (wallpaper, dock)
+# Runs ONCE at the next login after an update, then removes itself.
 sleep 3
 WP=/usr/share/backgrounds/shubham-os/wallpaper-kali-mode.jpg
 if [ -f "$WP" ]; then

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# Shubham OS — XFCE panel config me 2 kaam:
-# 1) ShubhamOS Update launcher ko panel-1 (taskbar) me pin karna
-# 2) Panel-2 ke roop me neeche Mac-jaisa dock jodna
+# Shubham OS — 2 jobs in the XFCE panel config:
+# 1) Pin the ShubhamOS Update launcher to panel-1 (taskbar)
+# 2) Add a Mac-like dock at the bottom as panel-2
 # Usage: panel-pin.py <xfce4-panel.xml> [applications_dir]
 import sys, os
 import xml.etree.ElementTree as ET
@@ -28,7 +28,7 @@ def main():
     path = sys.argv[1]
     apps_dir = sys.argv[2] if len(sys.argv) > 2 else "/usr/share/applications"
     if not os.path.isfile(path):
-        print("panel-pin: file nahi mili, skip:", path); return
+        print("panel-pin: file not found, skip:", path); return
     try:
         tree = ET.parse(path)
     except Exception as e:
@@ -37,7 +37,7 @@ def main():
     plugins = find_prop(root, "plugins")
     panels = find_prop(root, "panels")
     if plugins is None or panels is None:
-        print("panel-pin: plugins/panels nahi mile, skip"); return
+        print("panel-pin: plugins/panels not found, skip"); return
 
     ids = []
     for p in plugins.findall("property"):
@@ -77,7 +77,7 @@ def main():
             panel.append(arr)
         return arr
 
-    # --- 1) Updater pin panel-1 me ---
+    # --- 1) Pin updater in panel-1 ---
     p1 = panel_prop("panel-1")
     if p1 is not None and not has_launcher("shubham-update.desktop"):
         uid = new_launcher("shubham-update.desktop")
@@ -115,7 +115,7 @@ def main():
                 add_value(arr, "int", lid)
         p2.append(arr)
         panels.append(p2)
-        print("panel-pin: Mac dock (panel-2) joda gaya")
+        print("panel-pin: Mac dock (panel-2) added")
 
     tree.write(path, encoding="UTF-8", xml_declaration=True)
     print("panel-pin: done ->", path)

@@ -1,24 +1,28 @@
 # 👑 Shubham OS — Dual Mode
 
 ### 🎬 [See All Special Features — Click Here](https://shubhamkhalash31.github.io/shubham-os-/features.html)
-_Presentation khul jayegi — pehle apni language choose karo (English / Hindi / Gujarati / Spanish)._
+_The presentation will open — first choose your language (English / Hindi / Gujarati / Spanish)._
 
-**Ek OS, do mode:**
-- **Windows Mode** — Windows jaisa saaf look, halki theme, golden shield
-- **Kali Mode** — pura Kali Linux, saare tools, dark theme
+## ⬇️ Download Shubham OS — Simple Steps
+1. Download all 4 files and keep them in **one folder**:
+   - [Part 1 — ShubhamOS-v1.iso.part-aa](https://github.com/SHUBHAMKHALASH31/shubham-os-/releases/download/v1/ShubhamOS-v1.iso.part-aa)
+   - [Part 2 — ShubhamOS-v1.iso.part-ab](https://github.com/SHUBHAMKHALASH31/shubham-os-/releases/download/v1/ShubhamOS-v1.iso.part-ab)
+   - [Part 3 — ShubhamOS-v1.iso.part-ac](https://github.com/SHUBHAMKHALASH31/shubham-os-/releases/download/v1/ShubhamOS-v1.iso.part-ac)
+   - [Join file — ShubhamOS-join.bat](https://github.com/SHUBHAMKHALASH31/shubham-os-/releases/download/v1/ShubhamOS-join.bat)
+2. **Double-click ShubhamOS-join.bat** — **ShubhamOS.iso** will be created in the same folder.
+3. Write the ISO to a bootable pen drive, or run it in a virtual machine (VMware / VirtualBox).
 
-Ek command se mode badlo: `shubham-windows` | `shubham-kali`
+**One OS, two modes:**
+- **Windows Mode** — a clean Windows-like look, light theme, golden shield
+- **Kali Mode** — full Kali Linux, all tools, dark theme
 
-## Download
-ISO **Releases** me milegi (kuch hisso me — GitHub 2 GB se badi file nahi leta).
-Saare part + **ShubhamOS-join.bat** download karo, sab ek hi folder me rakho,
-phir join.bat par **double-click** karo — ShubhamOS.iso taiyar ho jayegi.
+Change the mode with one command: `shubham-windows` | `shubham-kali`
 
-## ISO kaise banti hai
-GitHub Actions ka computer Kali ki Live ISO ko khol kar Shubham OS ka
-branding (naam, wallpaper, logo, toggle commands) daal kar nayi ISO
-banata hai — `remaster-shubham-os.sh`.
-Puri professional build ke liye `build-shubham-os.sh` (Kali live-build).
+## How the ISO is made
+The GitHub Actions computer opens the Kali Live ISO, adds the Shubham OS
+branding (name, wallpaper, logo, toggle commands) and makes a new ISO
+— `remaster-shubham-os.sh`.
+For a full professional build, use `build-shubham-os.sh` (Kali live-build).
 
 ## ⭐ Shubham OS Special Features
 These features are only in Shubham OS. Full presentation: **features.html** (open it in a browser — first choose your language).

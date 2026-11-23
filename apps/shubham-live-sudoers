@@ -1,3 +1,3 @@
-# Shubham OS — Live auto-update ke liye seemit permission (sirf ek script, aur kuch nahi)
+# Shubham OS — limited permission for Live auto-update (only one script, nothing else)
 kali ALL=(root) NOPASSWD: /usr/local/bin/shubham-autoupdate
 shubham ALL=(root) NOPASSWD: /usr/local/bin/shubham-autoupdate

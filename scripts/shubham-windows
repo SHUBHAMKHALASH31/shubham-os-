@@ -1,23 +1,23 @@
 #!/bin/bash
-# Shubham OS — Windows Mode ON (gehara switch)
-# Pehle undercover lagta hai; wo safal ho tabhi tools chhupte hain aur "ON" bulta hai.
-# Data (files) ko koi haath nahi lagta. Wapas: shubham-kali
+# Shubham OS — Windows Mode ON (deep switch)
+# Undercover is applied first; only when it succeeds do the tools hide and the mode says "ON".
+# User data (files) is never touched. To go back: shubham-kali
 
 STATE_FILE="$HOME/.shubham-os-mode"
 CURRENT="kali"
 [ -f "$STATE_FILE" ] && CURRENT=$(cat "$STATE_FILE")
 if [ "$CURRENT" = "windows" ]; then
-  echo "Shubham OS: system pehle se Windows Mode me hai."
+  echo "Shubham OS: the system is already in Windows Mode."
   exit 0
 fi
 if ! command -v kali-undercover >/dev/null 2>&1; then
-  echo "kali-undercover nahi mila. Pehle ye chalao:"
+  echo "kali-undercover was not found. Run this first:"
   echo "sudo apt update && sudo apt install -y kali-undercover"
   exit 1
 fi
 
-# Undercover ka apna check hai: xfconfd + xfce4-panel dono chalte hone chahiye.
-# Ek bhi band ho to wo "only works on Xfce desktop" bolke ruk jata hai — pehle dono ko pakka karo.
+# Undercover has its own check: xfconfd and xfce4-panel must both be running.
+# If either one is stopped, it stops with "only works on Xfce desktop" — make sure both are running first.
 ensure_xfce_processes() {
   if ! pgrep -u "$(id -un)" xfconfd >/dev/null 2>&1; then
     (xfconfd >/dev/null 2>&1 &)
@@ -29,13 +29,13 @@ ensure_xfce_processes() {
 }
 ensure_xfce_processes
 
-# Undercover ko desktop ki sahi pehchan ke saath chalao; fail ho to rukho, jhooth mat bolo
+# Run undercover with the correct desktop identity; if it fails, stop — never claim success falsely
 if ! DESKTOP_SESSION=xfce XDG_CURRENT_DESKTOP=XFCE kali-undercover; then
-  echo "Shubham OS: Windows Mode NAHI lag paya (undercover error). Koi badlav nahi hua."
+  echo "Shubham OS: Windows Mode could NOT be applied (undercover error). Nothing was changed."
   exit 1
 fi
 
-# --- Kali tools ko menu se chhupao (user-level NoDisplay overrides) ---
+# --- Hide the Kali tools from the menu (user-level NoDisplay overrides) ---
 APP_DIR="$HOME/.local/share/applications"
 STATE_DIR="$HOME/.config/shubham-os"
 mkdir -p "$APP_DIR" "$STATE_DIR"
@@ -69,4 +69,4 @@ done
 
 echo "windows" > "$STATE_FILE"
 xfce4-panel -r >/dev/null 2>&1 &
-echo "Shubham OS: Windows Mode ON — Kali tools menu se gayab. Wapas ke liye: shubham-kali"
+echo "Shubham OS: Windows Mode ON — Kali tools are hidden from the menu. To go back: shubham-kali"

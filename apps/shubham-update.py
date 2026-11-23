@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# ShubhamOS Update — Windows Update jaisa 1-click updater
-# GitHub repo se version check karke update script download + install karta hai.
+# ShubhamOS Update — a 1-click updater like Windows Update
+# Checks the version from the GitHub repo, then downloads and installs the update script.
 import os, sys, threading, urllib.request
 
 VERSION_FILE = "/etc/shubham-os-version"
@@ -29,7 +29,7 @@ try:
     gi.require_version("Gtk", "3.0")
     from gi.repository import Gtk, GLib
 except Exception:
-    os.system("zenity --error --text='ShubhamOS Update: GTK nahi mila.' 2>/dev/null")
+    os.system("zenity --error --text='ShubhamOS Update: GTK was not found.' 2>/dev/null")
     sys.exit(1)
 
 class Updater(Gtk.Window):
@@ -47,7 +47,7 @@ class Updater(Gtk.Window):
         title.set_markup("<b><big>ShubhamOS Update</big></b>")
         box.pack_start(title, False, False, 0)
 
-        self.status = Gtk.Label(label=f"Tumhara version: Shubham OS {self.cur}\nUpdate check karne ke liye neeche wala button dabao.")
+        self.status = Gtk.Label(label=f"Your version: Shubham OS {self.cur}\nPress the button below to check for updates.")
         self.status.set_justify(Gtk.Justification.CENTER)
         box.pack_start(self.status, True, True, 0)
 
@@ -69,7 +69,7 @@ class Updater(Gtk.Window):
 
     def on_check(self, _):
         self.check_btn.set_sensitive(False)
-        self.set_status("Update check ho raha hai...")
+        self.set_status("Checking for updates...")
         threading.Thread(target=self._check_worker, daemon=True).start()
 
     def _check_worker(self):
@@ -78,24 +78,24 @@ class Updater(Gtk.Window):
             latest = int(info.get("VERSION", "0"))
             self.info = info
             if latest > self.cur:
-                notes = info.get("NOTES", "Naya update uplabdh hai.")
-                self.set_status(f"Naya update mil gaya: Shubham OS {latest}\n{notes}\n\nLagane ke liye 'Download Update' dabao.")
+                notes = info.get("NOTES", "A new update is available.")
+                self.set_status(f"New update found: Shubham OS {latest}\n{notes}\n\nPress 'Download Update' to install it.")
                 GLib.idle_add(self.dl_btn.set_sensitive, True)
             else:
-                self.set_status(f"Tumhara Shubham OS bilkul up-to-date hai. (Version {self.cur})")
+                self.set_status(f"Your Shubham OS is fully up to date. (Version {self.cur})")
         except Exception:
-            self.set_status("Update check nahi ho paya.\nInternet connection check karke dobara try karo.")
+            self.set_status("The update check failed.\nCheck your internet connection and try again.")
         GLib.idle_add(self.check_btn.set_sensitive, True)
 
     def on_download(self, _):
         if not self.info or "SCRIPT" not in self.info:
-            self.set_status("Update ki jaankari adhuri hai. Baad me try karo.")
+            self.set_status("The update information is incomplete. Try again later.")
             return
         self.dl_btn.set_sensitive(False)
         self.check_btn.set_sensitive(False)
         self.progress.set_visible(True)
         self.progress.pulse()
-        self.set_status("Update download aur install ho raha hai...\nPassword manga jaye to apna password dalna.")
+        self.set_status("Downloading and installing the update...\nIf a password is asked, enter your password.")
         threading.Thread(target=self._dl_worker, daemon=True).start()
 
     def _dl_worker(self):
@@ -106,11 +106,11 @@ class Updater(Gtk.Window):
             os.chmod(path, 0o755)
             rc = os.system(f"pkexec bash {path}")
             if rc == 0:
-                self.set_status("Update ho gaya! \u2705\nBadlav dikhne ke liye system restart kar lo.")
+                self.set_status("Update complete! \u2705\nRestart the system to see the changes.")
             else:
-                self.set_status("Update ruk gaya (password cancel ya error).\nDobara try karo.")
+                self.set_status("The update stopped (password cancelled or an error).\nPlease try again.")
         except Exception:
-            self.set_status("Update download nahi ho paya. Internet check karo.")
+            self.set_status("The update could not be downloaded. Check your internet.")
         GLib.idle_add(self.progress.set_visible, False)
         GLib.idle_add(self.dl_btn.set_sensitive, True)
         GLib.idle_add(self.check_btn.set_sensitive, True)
