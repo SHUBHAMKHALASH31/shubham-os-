@@ -1,3 +1,3 @@
-VERSION=14
-NOTES=Shubham OS 14: Menu fix part 2 - the Special Features section is added to the menu show list (Layout), so it appears in the menu after a restart.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-14.sh
+VERSION=15
+NOTES=Shubham OS 15: The Special Features section now uses the same method as Kali own sections (a merged menu file with its own Layout list), and the system menu file is restored to original.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-15.sh
