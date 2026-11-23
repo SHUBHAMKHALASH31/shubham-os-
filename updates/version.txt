@@ -1,3 +1,3 @@
-VERSION=13
-NOTES=Shubham OS 13: Menu fix - the Shubham OS Special Features section is now written into the system menu file, so it shows in the menu after a restart.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-13.sh
+VERSION=14
+NOTES=Shubham OS 14: Menu fix part 2 - the Special Features section is added to the menu show list (Layout), so it appears in the menu after a restart.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-14.sh
