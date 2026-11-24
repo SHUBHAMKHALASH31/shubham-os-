@@ -1,5 +1,5 @@
-VERSION=23
-NOTES=Shubham OS 23: Batch 4 - the last batch. shubham-lab (Practice Lab - real Kali commands on a closed lab, levels with save and continue, your own notes practice) and shubham-carry (Carry My OS - put the Shubham OS ISO on a pen drive with a persistence part, the official Kali method) are added, and Google Chrome is installed from Google official site. All 17 Special Features are complete after this update. Every new command is checked by hash.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-23.sh
-SCRIPT_SIZE=20056
-SCRIPT_SHA256=a5d0ea962855d8636e31a8c3c9a38c0420130c02d19a3dc8d454a63cc38898a1
+VERSION=24
+NOTES=Shubham OS 24: Practice Lab rebuilt. The old lab worked like a quiz (levels and typed answers) - that is gone. shubham-lab now starts a free practice lab: fake bank, fake shop, fake social and fake company sites on this PC only (127.0.0.1), a Lab Home page, Chrome opens on it and a terminal opens in the lab folder. No levels, no questions - practise with real tools (nmap, gobuster, nikto, sqlmap, Burp). Stop and Reset are in the menu. Only shubham-lab changes; the command is checked by hash.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-24.sh
+SCRIPT_SIZE=21521
+SCRIPT_SHA256=31397de4119f3db6d1d7cd6a3bfa00394f8bb366170797511b7c8611ffcfc9f2
