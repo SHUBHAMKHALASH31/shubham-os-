@@ -1,5 +1,5 @@
-VERSION=19
-NOTES=Shubham OS 19: Special Features Batch 2 is in - six new commands that do their real work from the terminal: shubham-phone (connect phone without cable), shubham-locker (lock files with a password), shubham-record (record your screen), shubham-guest (guest mode), shubham-clean (clean junk, speed up PC), shubham-recover (bring back a deleted file). Type shubham-help to see all commands.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-19.sh
-SCRIPT_SIZE=22292
-SCRIPT_SHA256=7f4211b9544e46bf2cc5ea0ea96497a2df5a42bda5e233032d509cd3829bf4c1
+VERSION=20
+NOTES=Shubham OS 20: Batch 2 repair update - reinstalls the six Batch 2 commands (shubham-phone, shubham-locker, shubham-record, shubham-guest, shubham-clean, shubham-recover) and checks every installed command by its hash, so each file is exactly the tested file. It also runs shubham-clean once to prove it works. Type shubham-help to see all commands.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-20.sh
+SCRIPT_SIZE=23748
+SCRIPT_SHA256=d82a4f03bbc397a735d0db78376d07ad5825b774b9563f2e556025f6dbb03e5f
