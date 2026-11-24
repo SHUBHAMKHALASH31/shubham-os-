@@ -1,3 +1,3 @@
-VERSION=16
-NOTES=Shubham OS 16: The Special Features section now comes through the user-level menu file, the route the menu library reads first; the update checks with the menu library itself that the section and its five apps are in the menu before it reports success.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-16.sh
+VERSION=17
+NOTES=Shubham OS 17: Repair for Update 16. If the menu stopped opening after Update 16, this update first moves the broken menu file aside so the stock menu works again, then installs the Special Features section with checked files only: an incomplete download now changes nothing, every file is verified before it lands, and if the final check fails the update removes its own menu file and keeps your old version.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-17.sh
