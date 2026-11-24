@@ -1,5 +1,5 @@
-VERSION=22
-NOTES=Shubham OS 22: Link and Ghost fix. shubham-live and shubham-phone now make a real internet link (free Cloudflare tunnel) that opens from ANY network, and the phone code is now 8 numbers. shubham-ghost is fixed - a wrong line the old Ghost left in Tor settings is removed and Tor starts properly. This update installs cloudflared from Cloudflare official release and checks every fixed command by hash.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-22.sh
-SCRIPT_SIZE=22669
-SCRIPT_SHA256=d84f97b3d412fb483373393e9da944795fee65cb85b0ec61fb477db618cb9a2b
+VERSION=23
+NOTES=Shubham OS 23: Batch 4 - the last batch. shubham-lab (Practice Lab - real Kali commands on a closed lab, levels with save and continue, your own notes practice) and shubham-carry (Carry My OS - put the Shubham OS ISO on a pen drive with a persistence part, the official Kali method) are added, and Google Chrome is installed from Google official site. All 17 Special Features are complete after this update. Every new command is checked by hash.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-23.sh
+SCRIPT_SIZE=20056
+SCRIPT_SHA256=a5d0ea962855d8636e31a8c3c9a38c0420130c02d19a3dc8d454a63cc38898a1
