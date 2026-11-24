@@ -1,0 +1,65 @@
+#!/bin/bash
+# Shubham OS - Guest Mode: give your PC to someone else, safely.
+# The guest gets a clean, empty account. Your files stay hidden and safe.
+# Nothing the guest does is saved - the account is made fresh every time.
+GUEST="shubham-guest"
+
+echo "Guest Mode - a clean, empty account for someone else."
+echo ""
+echo "What do you want to do?"
+echo "  1) Start Guest Mode (make a fresh guest account)"
+echo "  2) Remove the guest account fully"
+read -r -p "Type 1 or 2: " CH
+
+if [ "$CH" = "1" ]; then
+  echo ""
+  echo "Your PC password may be asked - it is for your safety."
+  if id "$GUEST" >/dev/null 2>&1; then
+    echo "An old guest account was found. It will be removed and made fresh,"
+    echo "so nothing from the last guest stays."
+    sudo userdel -r "$GUEST" 2>/dev/null
+  fi
+  if ! sudo useradd -m -s /bin/bash "$GUEST"; then
+    echo "The guest account could not be made. Nothing was changed."
+    exit 1
+  fi
+  echo "$GUEST:guest" | sudo chpasswd
+  # Keep your own files private from the guest.
+  PERM="$(stat -c %a "$HOME" 2>/dev/null)"
+  case "$PERM" in
+    *[!0]*[0-9]) ;;
+    *) chmod 750 "$HOME" 2>/dev/null ;;
+  esac
+  echo ""
+  echo "Guest Mode is ready."
+  echo "  Guest name: $GUEST"
+  echo "  Guest password: guest"
+  echo ""
+  echo "Now log out, and log in with the guest name."
+  echo "Your files stay hidden and safe. When the guest logs out,"
+  echo "log in with your own account - everything is as it was."
+  echo ""
+  read -r -p "Log out now? (y/n): " GO
+  if [ "$GO" = "y" ] || [ "$GO" = "Y" ]; then
+    xfce4-session-logout --logout 2>/dev/null || echo "Please log out from the menu."
+  fi
+
+elif [ "$CH" = "2" ]; then
+  echo ""
+  echo "Your PC password may be asked - it is for your safety."
+  if id "$GUEST" >/dev/null 2>&1; then
+    if sudo userdel -r "$GUEST" 2>/dev/null; then
+      echo "The guest account and all its files are removed."
+    else
+      echo "It could not be removed. Is the guest logged in right now?"
+      echo "Log the guest out first, then run this again."
+      exit 1
+    fi
+  else
+    echo "There is no guest account on this PC."
+  fi
+
+else
+  echo "Please run it again and type 1 or 2."
+  exit 1
+fi

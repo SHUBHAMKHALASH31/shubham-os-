@@ -1,0 +1,127 @@
+#!/bin/bash
+# Shubham OS - Data Locker: lock any file or folder with your own password.
+# A locked file goes inside the locker and disappears from its place.
+# Run the command again and unlock it with the same password.
+if ! command -v openssl >/dev/null 2>&1; then
+  echo "OpenSSL is not found on this PC, so Data Locker cannot run."
+  exit 1
+fi
+
+LOCKER="$HOME/.shubham-locker"
+mkdir -p "$LOCKER"
+chmod 700 "$LOCKER" 2>/dev/null
+PASSFILE="$LOCKER/.passhash"
+INDEX="$LOCKER/index.txt"
+touch "$INDEX"
+
+hash_of() { printf '%s' "$1" | sha256sum | awk '{print $1}'; }
+
+if [ ! -f "$PASSFILE" ]; then
+  echo "Welcome to Data Locker. First time only - set your locker password."
+  read -r -s -p "New password: " PW1; echo ""
+  read -r -s -p "Type it again: " PW2; echo ""
+  if [ -z "$PW1" ] || [ "$PW1" != "$PW2" ]; then
+    echo "The two passwords do not match, or the password was empty. Run it again."
+    exit 1
+  fi
+  hash_of "$PW1" > "$PASSFILE"
+  chmod 600 "$PASSFILE"
+  PW="$PW1"
+  echo "Password set. Do not forget it - a locked file cannot be opened without it."
+else
+  read -r -s -p "Your locker password: " PW; echo ""
+  if [ "$(hash_of "$PW")" != "$(cat "$PASSFILE")" ]; then
+    echo "Wrong password. Nothing was changed."
+    exit 1
+  fi
+fi
+
+echo ""
+echo "What do you want to do?"
+echo "  1) Lock a file or folder"
+echo "  2) Unlock a file or folder"
+read -r -p "Type 1 or 2: " CH
+
+if [ "$CH" = "1" ]; then
+  read -r -p "Type (or drop) the path of the file or folder: " TARGET
+  TARGET="$(printf '%s' "$TARGET" | sed "s/^'//; s/'$//; s/^\"//; s/\"$//")"
+  TARGET="${TARGET/#\~/$HOME}"
+  if [ ! -e "$TARGET" ]; then
+    echo "That file or folder was not found. Run it again and check the path."
+    exit 1
+  fi
+  BASE="$(basename "$TARGET")"
+  PARENT="$(dirname "$TARGET")"
+  STAMP="$(date +%Y%m%d-%H%M%S)"
+  SAFE="$(printf '%s' "$BASE" | tr -c 'A-Za-z0-9._-' '_')"
+  STORED="${SAFE}-${STAMP}.locked"
+  TMPENC="$LOCKER/.tmp-$STORED"
+  if tar -czf - -C "$PARENT" "$BASE" 2>/dev/null | openssl enc -aes-256-cbc -salt -pbkdf2 -pass pass:"$PW" -out "$TMPENC" && [ -s "$TMPENC" ]; then
+    mv -f "$TMPENC" "$LOCKER/$STORED"
+    printf '%s|%s|%s\n' "$STORED" "$TARGET" "$BASE" >> "$INDEX"
+    rm -rf "$TARGET"
+    echo ""
+    echo "Locked: $BASE"
+    echo "It is gone from its place and safe inside the locker."
+  else
+    rm -f "$TMPENC"
+    echo "Locking failed. Your file was NOT touched."
+    exit 1
+  fi
+
+elif [ "$CH" = "2" ]; then
+  if [ ! -s "$INDEX" ]; then
+    echo "The locker is empty. Nothing to unlock."
+    exit 0
+  fi
+  echo ""
+  echo "Files in the locker:"
+  i=1
+  while IFS='|' read -r STORED ORIG BASE; do
+    echo "  $i) $BASE  (was at: $ORIG)"
+    i=$((i+1))
+  done < "$INDEX"
+  TOTAL=$((i-1))
+  echo ""
+  read -r -p "Type the number to unlock: " N
+  case "$N" in
+    ''|*[!0-9]*) echo "That is not a number. Run it again."; exit 1 ;;
+  esac
+  if [ "$N" -lt 1 ] || [ "$N" -gt "$TOTAL" ]; then
+    echo "That number is not in the list. Run it again."
+    exit 1
+  fi
+  LINE="$(sed -n "${N}p" "$INDEX")"
+  STORED="$(printf '%s' "$LINE" | cut -d'|' -f1)"
+  ORIG="$(printf '%s' "$LINE" | cut -d'|' -f2)"
+  BASE="$(printf '%s' "$LINE" | cut -d'|' -f3)"
+  if [ -e "$ORIG" ]; then
+    echo "A file or folder is already at the old place: $ORIG"
+    echo "Move it first, then unlock again. Nothing was changed."
+    exit 1
+  fi
+  TMPTAR="$(mktemp /tmp/shubham-unlock-XXXXXX.tar.gz)"
+  if openssl enc -d -aes-256-cbc -pbkdf2 -pass pass:"$PW" -in "$LOCKER/$STORED" -out "$TMPTAR" 2>/dev/null && [ -s "$TMPTAR" ]; then
+    mkdir -p "$(dirname "$ORIG")"
+    if tar -xzf "$TMPTAR" -C "$(dirname "$ORIG")" 2>/dev/null && [ -e "$ORIG" ]; then
+      rm -f "$LOCKER/$STORED"
+      sed -i "${N}d" "$INDEX"
+      echo ""
+      echo "Unlocked: $BASE"
+      echo "It is back at: $ORIG"
+    else
+      echo "Unlocking failed. Your locked file is still safe in the locker."
+      rm -f "$TMPTAR"
+      exit 1
+    fi
+  else
+    echo "Unlocking failed. Your locked file is still safe in the locker."
+    rm -f "$TMPTAR"
+    exit 1
+  fi
+  rm -f "$TMPTAR"
+
+else
+  echo "Please run it again and type 1 or 2."
+  exit 1
+fi

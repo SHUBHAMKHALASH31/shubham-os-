@@ -1,5 +1,5 @@
-VERSION=18
-NOTES=Shubham OS 18: The product repair. The update system itself is fixed: from now on every update download is verified (size + SHA-256) before it installs, so an incomplete download can never half-run again; a broken menu file repairs itself automatically at startup; and the Special Features section is installed with checked files only, with the old version kept if any check fails.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-18.sh
-SCRIPT_SIZE=26118
-SCRIPT_SHA256=622498b077a7b9008b1dcfa3af4878af5629a0a50741125168aac61a5c8daa22
+VERSION=19
+NOTES=Shubham OS 19: Special Features Batch 2 is in - six new commands that do their real work from the terminal: shubham-phone (connect phone without cable), shubham-locker (lock files with a password), shubham-record (record your screen), shubham-guest (guest mode), shubham-clean (clean junk, speed up PC), shubham-recover (bring back a deleted file). Type shubham-help to see all commands.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-19.sh
+SCRIPT_SIZE=22292
+SCRIPT_SHA256=7f4211b9544e46bf2cc5ea0ea96497a2df5a42bda5e233032d509cd3829bf4c1

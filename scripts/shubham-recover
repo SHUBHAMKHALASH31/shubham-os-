@@ -1,0 +1,96 @@
+#!/bin/bash
+# Shubham OS - File Recovery: bring back a file you deleted by mistake.
+# Deleted files stay in a hidden backup (the Trash) for 7 days.
+# Run it, pick the file from the list, and it goes back to its old place.
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "Python is not found on this PC, so File Recovery cannot run."
+  exit 1
+fi
+
+TRASH="$HOME/.local/share/Trash"
+FILES="$TRASH/files"
+INFO="$TRASH/info"
+mkdir -p "$FILES" "$INFO"
+
+decode() {
+  python3 -c "import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))" "$1"
+}
+
+# Clean backups older than 7 days.
+CLEANED=0
+for I in "$INFO"/*.trashinfo; do
+  [ -f "$I" ] || continue
+  DDATE="$(grep '^DeletionDate=' "$I" 2>/dev/null | head -1 | cut -d= -f2)"
+  case "$DDATE" in
+    [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]*)
+      if [ -n "$(find "$I" -newermt "$DDATE + 7 days" 2>/dev/null)" ] || \
+         [ "$(date -d "$DDATE + 7 days" +%s 2>/dev/null || echo 0)" -lt "$(date +%s)" ]; then
+        B="$(basename "$I" .trashinfo)"
+        rm -f "$FILES/$B" "$I"
+        CLEANED=$((CLEANED + 1))
+      fi
+      ;;
+  esac
+done
+if [ "$CLEANED" -gt 0 ]; then
+  echo "Old backups (more than 7 days) cleaned: $CLEANED"
+  echo ""
+fi
+
+# Make the list.
+NAMES=()
+ORIGS=()
+DATES=()
+for I in "$INFO"/*.trashinfo; do
+  [ -f "$I" ] || continue
+  B="$(basename "$I" .trashinfo)"
+  [ -e "$FILES/$B" ] || continue
+  P="$(grep '^Path=' "$I" 2>/dev/null | head -1 | cut -d= -f2-)"
+  D="$(grep '^DeletionDate=' "$I" 2>/dev/null | head -1 | cut -d= -f2)"
+  ORIG="$(decode "$P")"
+  NAMES+=("$B")
+  ORIGS+=("$ORIG")
+  DATES+=("$D")
+done
+
+if [ "${#NAMES[@]}" -eq 0 ]; then
+  echo "No deleted files found right now."
+  echo "Files deleted in the file manager come here and stay for 7 days."
+  echo "Files deleted with rm in the terminal cannot come back."
+  exit 0
+fi
+
+echo "Your deleted files:"
+i=1
+for K in "${!NAMES[@]}"; do
+  echo "  $i) $(basename "${ORIGS[$K]}")"
+  echo "     was at: ${ORIGS[$K]}"
+  echo "     deleted: ${DATES[$K]}"
+  i=$((i+1))
+done
+echo ""
+read -r -p "Type the number of the file you want back: " N
+case "$N" in
+  ''|*[!0-9]*) echo "That is not a number. Run it again."; exit 1 ;;
+esac
+if [ "$N" -lt 1 ] || [ "$N" -gt "${#NAMES[@]}" ]; then
+  echo "That number is not in the list. Run it again."
+  exit 1
+fi
+
+B="${NAMES[$((N-1))]}"
+ORIG="${ORIGS[$((N-1))]}"
+if [ -e "$ORIG" ]; then
+  echo "A file is already at the old place: $ORIG"
+  echo "Move it first, then run this again. Nothing was changed."
+  exit 1
+fi
+mkdir -p "$(dirname "$ORIG")"
+if mv "$FILES/$B" "$ORIG"; then
+  rm -f "$INFO/$B.trashinfo"
+  echo ""
+  echo "Your file is back: $ORIG"
+else
+  echo "The file could not be put back. It is still safe in the list."
+  exit 1
+fi

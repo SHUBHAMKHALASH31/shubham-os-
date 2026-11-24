@@ -1,0 +1,150 @@
+#!/bin/bash
+# Shubham OS - Phone Connect: connect your phone with your PC, no cable needed.
+# Run it, open the address on your phone, type the code, then send files both ways.
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "Python is not found on this PC, so Phone Connect cannot run."
+  exit 1
+fi
+
+SHARE="$HOME/PhoneShare"
+mkdir -p "$SHARE"
+PORT=8377
+IP="$(hostname -I 2>/dev/null | awk '{print $1}')"
+if [ -z "$IP" ]; then
+  echo "No network found. Connect this PC to WiFi first, then run it again."
+  exit 1
+fi
+CODE="$(( (RANDOM % 9000) + 1000 ))"
+
+SERVER="$(mktemp /tmp/shubham-phone-XXXXXX.py)"
+cat > "$SERVER" << 'PYEOF'
+import os, sys, html
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import unquote
+
+SHARE = os.environ["SHUBHAM_SHARE"]
+CODE = os.environ["SHUBHAM_CODE"]
+
+PAGE_LOGIN = """<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shubham OS - Phone Connect</title></head>
+<body style="font-family:sans-serif;max-width:480px;margin:40px auto;padding:0 16px">
+<h2>Shubham OS - Phone Connect</h2>
+<p>Type the code shown on the PC screen:</p>
+<form method="POST" action="/login"><input name="code" inputmode="numeric" style="font-size:20px;padding:8px;width:140px">
+<button style="font-size:20px;padding:8px 16px">Connect</button></form>
+</body></html>"""
+
+def page_main():
+    files = sorted(f for f in os.listdir(SHARE) if os.path.isfile(os.path.join(SHARE, f)))
+    items = "".join('<li><a href="/file/%s">%s</a></li>' % (html.escape(f), html.escape(f)) for f in files)
+    if not items:
+        items = "<li>No files yet. Put a file in the PhoneShare folder on the PC, or send one from this phone.</li>"
+    return """<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shubham OS - Phone Connect</title></head>
+<body style="font-family:sans-serif;max-width:480px;margin:40px auto;padding:0 16px">
+<h2>Shubham OS - Phone Connect</h2>
+<h3>Send a file to the PC</h3>
+<form method="POST" action="/upload" enctype="multipart/form-data">
+<input type="file" name="file"><br><br><button style="font-size:18px;padding:8px 16px">Send</button></form>
+<h3>Files on the PC (tap to download)</h3>
+<ul>%s</ul>
+</body></html>""" % items
+
+class H(BaseHTTPRequestHandler):
+    def log_message(self, *a):
+        pass
+    def ok_code(self):
+        c = self.headers.get("Cookie", "")
+        return ("code=" + CODE) in c
+    def send_html(self, text, status=200, extra=None):
+        b = text.encode()
+        self.send_response(status)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(b)))
+        if extra:
+            self.send_header("Set-Cookie", extra)
+        self.end_headers()
+        self.wfile.write(b)
+    def do_GET(self):
+        path = unquote(self.path.split("?")[0])
+        if path.startswith("/file/"):
+            if not self.ok_code():
+                self.send_html(PAGE_LOGIN)
+                return
+            name = os.path.basename(path[6:])
+            full = os.path.join(SHARE, name)
+            if not os.path.isfile(full):
+                self.send_html("File not found.", 404)
+                return
+            data = open(full, "rb").read()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/octet-stream")
+            self.send_header("Content-Disposition", 'attachment; filename="%s"' % name)
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return
+        if not self.ok_code():
+            self.send_html(PAGE_LOGIN)
+            return
+        self.send_html(page_main())
+    def do_POST(self):
+        if self.path == "/login":
+            n = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(n).decode("utf-8", "replace")
+            if ("code=" + CODE) in body:
+                self.send_html("<html><body><p>Connected. <a href='/'>Open Phone Connect</a></p></body></html>",
+                               extra="code=" + CODE + "; Path=/")
+            else:
+                self.send_html("<html><body><p>Wrong code. Go back and try again.</p></body></html>")
+            return
+        if self.path == "/upload":
+            if not self.ok_code():
+                self.send_html(PAGE_LOGIN)
+                return
+            ctype = self.headers.get("Content-Type", "")
+            n = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(n)
+            boundary = None
+            for part in ctype.split(";"):
+                part = part.strip()
+                if part.startswith("boundary="):
+                    boundary = part[9:].strip('"')
+            saved = None
+            if boundary:
+                bnd = ("--" + boundary).encode()
+                for chunk in body.split(bnd):
+                    if b'filename="' in chunk:
+                        head, _, data = chunk.partition(b"\r\n\r\n")
+                        fname = head.split(b'filename="')[1].split(b'"')[0].decode("utf-8", "replace")
+                        fname = os.path.basename(fname)
+                        if fname:
+                            if data.endswith(b"\r\n"):
+                                data = data[:-2]
+                            with open(os.path.join(SHARE, fname), "wb") as f:
+                                f.write(data)
+                            saved = fname
+                        break
+            if saved:
+                self.send_html("<html><body><p>File saved on the PC: %s</p><p><a href='/'>Back</a></p></body></html>" % html.escape(saved))
+            else:
+                self.send_html("<html><body><p>No file was received. Go back and try again.</p></body></html>")
+            return
+        self.send_html("Not found.", 404)
+
+ThreadingHTTPServer(("0.0.0.0", int(sys.argv[1])), H).serve_forever()
+PYEOF
+
+echo "Phone Connect is ON."
+echo ""
+echo "On your phone, open this address:"
+echo "  http://$IP:$PORT"
+echo ""
+echo "Code: $CODE"
+echo ""
+echo "Files in this folder can be downloaded on the phone: $SHARE"
+echo "Files sent from the phone also land in that folder."
+echo "Press Ctrl+C to stop."
+echo ""
+SHUBHAM_SHARE="$SHARE" SHUBHAM_CODE="$CODE" python3 "$SERVER" "$PORT"
+rm -f "$SERVER"

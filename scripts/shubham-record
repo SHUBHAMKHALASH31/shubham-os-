@@ -1,0 +1,61 @@
+#!/bin/bash
+# Shubham OS - Screen Record: record your whole screen as a video.
+# Run it once to start. Run it again to stop. The video is saved in Videos.
+PIDFILE="$HOME/.shubham-record.pid"
+INFOFILE="$HOME/.shubham-record.info"
+
+if [ -f "$PIDFILE" ]; then
+  PID="$(cat "$PIDFILE" 2>/dev/null)"
+  if [ -n "$PID" ] && kill -0 "$PID" 2>/dev/null; then
+    OUT="$(cat "$INFOFILE" 2>/dev/null)"
+    kill -INT "$PID" 2>/dev/null
+    for _ in 1 2 3 4 5 6 7 8 9 10; do
+      kill -0 "$PID" 2>/dev/null || break
+      sleep 0.5
+    done
+    rm -f "$PIDFILE" "$INFOFILE"
+    echo "Recording stopped."
+    if [ -n "$OUT" ] && [ -f "$OUT" ]; then
+      echo "Your video is saved: $OUT"
+    fi
+    exit 0
+  fi
+  rm -f "$PIDFILE" "$INFOFILE"
+fi
+
+if ! command -v ffmpeg >/dev/null 2>&1; then
+  echo "ffmpeg is not found on this PC, so Screen Record cannot run."
+  exit 1
+fi
+
+export DISPLAY="${DISPLAY:-:0}"
+
+mkdir -p "$HOME/Videos"
+OUT="$HOME/Videos/Shubham-Record-$(date +%Y%m%d-%H%M%S).mp4"
+
+# No size is given on purpose: ffmpeg takes the full screen by itself,
+# so this works on any screen, big or small.
+nohup ffmpeg -y -f x11grab -framerate 30 -i "$DISPLAY" \
+  -f pulse -i default -c:v libx264 -preset veryfast -pix_fmt yuv420p -c:a aac \
+  "$OUT" >/dev/null 2>&1 &
+PID=$!
+sleep 1
+if ! kill -0 "$PID" 2>/dev/null; then
+  # No mic or sound device - record video only.
+  nohup ffmpeg -y -f x11grab -framerate 30 -i "$DISPLAY" \
+    -c:v libx264 -preset veryfast -pix_fmt yuv420p \
+    "$OUT" >/dev/null 2>&1 &
+  PID=$!
+  sleep 1
+fi
+if ! kill -0 "$PID" 2>/dev/null; then
+  echo "Recording could not start. Is the screen on?"
+  rm -f "$OUT"
+  exit 1
+fi
+
+printf '%s' "$PID" > "$PIDFILE"
+printf '%s' "$OUT" > "$INFOFILE"
+echo "Recording started. Do your work on the PC."
+echo "Run shubham-record again to stop."
+echo "The video will be saved in your Videos folder."

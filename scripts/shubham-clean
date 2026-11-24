@@ -1,0 +1,55 @@
+#!/bin/bash
+# Shubham OS - Speed Up PC: cleans the junk - old temp files, cache and useless logs.
+# It shows how much junk it found, cleans it, then shows how much space was freed.
+
+size_of() {
+  if [ -e "$1" ]; then du -sb "$1" 2>/dev/null | awk '{print $1}'; else echo 0; fi
+}
+human() {
+  numfmt --to=iec-i --suffix=B "$1" 2>/dev/null || echo "$1 bytes"
+}
+
+TARGETS=("$HOME/.cache" "$HOME/.local/share/Trash" "$HOME/.thumbnails")
+
+echo "Speed Up PC - let us see the junk on this PC."
+echo ""
+TOTAL=0
+for T in "${TARGETS[@]}"; do
+  S="$(size_of "$T")"
+  TOTAL=$((TOTAL + S))
+  case "$T" in
+    *".cache") NAME="App cache and temp files" ;;
+    *"Trash") NAME="Trash (deleted files)" ;;
+    *".thumbnails") NAME="Old photo thumbnails" ;;
+    *) NAME="$T" ;;
+  esac
+  echo "  $NAME: $(human "$S")"
+done
+echo ""
+echo "Total junk found: $(human "$TOTAL")"
+
+if [ "$TOTAL" -eq 0 ]; then
+  echo "Your PC is already clean. Nothing to do."
+  exit 0
+fi
+
+read -r -p "Clean it now? (y/n): " GO
+if [ "$GO" != "y" ] && [ "$GO" != "Y" ]; then
+  echo "OK, nothing was cleaned."
+  exit 0
+fi
+
+for T in "${TARGETS[@]}"; do
+  if [ -d "$T" ]; then
+    find "$T" -mindepth 1 -delete 2>/dev/null
+  fi
+done
+
+AFTER=0
+for T in "${TARGETS[@]}"; do
+  AFTER=$((AFTER + $(size_of "$T")))
+done
+FREED=$((TOTAL - AFTER))
+echo ""
+echo "Done. Space freed: $(human "$FREED")"
+echo "Your PC should feel lighter now."
