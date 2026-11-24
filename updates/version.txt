@@ -1,5 +1,5 @@
-VERSION=20
-NOTES=Shubham OS 20: Batch 2 repair update - reinstalls the six Batch 2 commands (shubham-phone, shubham-locker, shubham-record, shubham-guest, shubham-clean, shubham-recover) and checks every installed command by its hash, so each file is exactly the tested file. It also runs shubham-clean once to prove it works. Type shubham-help to see all commands.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-20.sh
-SCRIPT_SIZE=23748
-SCRIPT_SHA256=d82a4f03bbc397a735d0db78376d07ad5825b774b9563f2e556025f6dbb03e5f
+VERSION=21
+NOTES=Shubham OS 21: Special Features Batch 3 (shubham-doctor - full PC check and repair, shubham-live - show your screen live, watch only, shubham-ghost - new identity and hidden net route) plus the Record fix. It installs the tools some commands need (ffmpeg, Tor, x11vnc, novnc, ClamAV) and reinstalls all nine commands with a hash check on every file. Type shubham-help to see all commands.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-21.sh
+SCRIPT_SIZE=39042
+SCRIPT_SHA256=71bb565c8f2fb0936d405b4e8ae3f18893662e022f833be3883bc2dbba778b6a
