@@ -1,5 +1,5 @@
-VERSION=21
-NOTES=Shubham OS 21: Special Features Batch 3 (shubham-doctor - full PC check and repair, shubham-live - show your screen live, watch only, shubham-ghost - new identity and hidden net route) plus the Record fix. It installs the tools some commands need (ffmpeg, Tor, x11vnc, novnc, ClamAV) and reinstalls all nine commands with a hash check on every file. Type shubham-help to see all commands.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-21.sh
-SCRIPT_SIZE=39042
-SCRIPT_SHA256=71bb565c8f2fb0936d405b4e8ae3f18893662e022f833be3883bc2dbba778b6a
+VERSION=22
+NOTES=Shubham OS 22: Link and Ghost fix. shubham-live and shubham-phone now make a real internet link (free Cloudflare tunnel) that opens from ANY network, and the phone code is now 8 numbers. shubham-ghost is fixed - a wrong line the old Ghost left in Tor settings is removed and Tor starts properly. This update installs cloudflared from Cloudflare official release and checks every fixed command by hash.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-22.sh
+SCRIPT_SIZE=22669
+SCRIPT_SHA256=d84f97b3d412fb483373393e9da944795fee65cb85b0ec61fb477db618cb9a2b
