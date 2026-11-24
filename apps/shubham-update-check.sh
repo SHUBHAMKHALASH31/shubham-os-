@@ -26,9 +26,12 @@ LATEST=$(echo "$INFO" | awk -F= '$1=="VERSION" {print $2}')
 if [ "$LATEST" -gt "$CUR" ] 2>/dev/null; then
   if [ "$IS_LIVE" = "1" ] && [ -x /usr/local/bin/shubham-autoupdate ]; then
     notify-send -i shubham-os-logo "ShubhamOS Update" "New version $LATEST found — installing it automatically in Live..." 2>/dev/null || true
-    sudo -n /usr/local/bin/shubham-autoupdate >/dev/null 2>&1
-    xfce4-panel -r >/dev/null 2>&1 || true
-    notify-send -i shubham-os-logo "ShubhamOS Update" "Done! You are now running the latest Shubham OS $LATEST in Live." 2>/dev/null || true
+    if sudo -n /usr/local/bin/shubham-autoupdate >/dev/null 2>&1; then
+      xfce4-panel -r >/dev/null 2>&1 || true
+      notify-send -i shubham-os-logo "ShubhamOS Update" "Done! You are now running the latest Shubham OS $LATEST in Live." 2>/dev/null || true
+    else
+      notify-send -i shubham-os-logo "ShubhamOS Update" "The new update could not be installed completely. It will be tried again on the next start." 2>/dev/null || true
+    fi
   else
     notify-send -i shubham-os-logo "ShubhamOS Update" "A new update is available: Shubham OS $LATEST — open ShubhamOS Update and download it." 2>/dev/null || true
   fi

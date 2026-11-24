@@ -1,3 +1,5 @@
-VERSION=17
-NOTES=Shubham OS 17: Repair for Update 16. If the menu stopped opening after Update 16, this update first moves the broken menu file aside so the stock menu works again, then installs the Special Features section with checked files only: an incomplete download now changes nothing, every file is verified before it lands, and if the final check fails the update removes its own menu file and keeps your old version.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-17.sh
+VERSION=18
+NOTES=Shubham OS 18: The product repair. The update system itself is fixed: from now on every update download is verified (size + SHA-256) before it installs, so an incomplete download can never half-run again; a broken menu file repairs itself automatically at startup; and the Special Features section is installed with checked files only, with the old version kept if any check fails.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-18.sh
+SCRIPT_SIZE=26118
+SCRIPT_SHA256=622498b077a7b9008b1dcfa3af4878af5629a0a50741125168aac61a5c8daa22
