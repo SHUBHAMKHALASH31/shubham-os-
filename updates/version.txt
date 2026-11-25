@@ -1,5 +1,5 @@
-VERSION=24
-NOTES=Shubham OS 24: Practice Lab rebuilt. The old lab worked like a quiz (levels and typed answers) - that is gone. shubham-lab now starts a free practice lab: fake bank, fake shop, fake social and fake company sites on this PC only (127.0.0.1), a Lab Home page, Chrome opens on it and a terminal opens in the lab folder. No levels, no questions - practise with real tools (nmap, gobuster, nikto, sqlmap, Burp). Stop and Reset are in the menu. Only shubham-lab changes; the command is checked by hash.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-24.sh
-SCRIPT_SIZE=21521
-SCRIPT_SHA256=31397de4119f3db6d1d7cd6a3bfa00394f8bb366170797511b7c8611ffcfc9f2
+VERSION=25
+NOTES=Shubham OS 25: Carry My OS disk list fixed. shubham-carry now lists every real disk except the system disk, so a VMware virtual disk can be used to test Carry without a pen drive. CD drives (/dev/sr*) are never listed. Everything else in carry is unchanged: ISO finder, typed capital YES warning, dd copy, persistence part and settings file. Only shubham-carry changes; the command is checked by hash.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-25.sh
+SCRIPT_SIZE=9339
+SCRIPT_SHA256=091d8b3b7afe74e2d21ce8ae09fe864524a7e23af102d51a0b714164dcc92234
