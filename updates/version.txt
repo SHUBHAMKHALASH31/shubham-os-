@@ -1,5 +1,5 @@
-VERSION=27
-NOTES=Shubham OS 27: the FULL package update. From now on every update carries ALL 17 feature commands at their newest version plus the tools they need (ffmpeg, Tor, x11vnc, websockify, novnc, ClamAV, cloudflared, Google Chrome) - so jumping from any older version brings everything, nothing is missed. Includes the Carry disk list fix (Update 25) and the Lab fake OS desktop (Update 26). Every command is checked by hash.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-27.sh
-SCRIPT_SIZE=119465
-SCRIPT_SHA256=06edbaff57e88af8a4cb286e5f63e6b6e5a8e634844606d15e9f9f6cb5000cbb
+VERSION=28
+NOTES=Shubham OS 28: full package update (all 17 commands at newest version + tools). NEW: shubham-lab changed - the old local lab is gone; shubham-lab now opens the online Kali Terminal Simulator directly in Google Chrome, and first tells the user clearly that internet is a must (without internet it will not open) and checks the internet before opening.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-28.sh
+SCRIPT_SIZE=71888
+SCRIPT_SHA256=8e1442236ce8c8ae47ee21bce7bfbc16f1cf9b168bf7ee01af81c958abc2ee24
