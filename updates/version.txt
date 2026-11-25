@@ -1,5 +1,5 @@
-VERSION=26
-NOTES=Shubham OS 26: Practice Lab gets a fake OS desktop. Start Lab now opens a full fake Shubham OS desktop inside Chrome: icons, movable windows, a practice terminal whose commands answer like the real tools (nmap, gobuster, nikto, sqlmap, curl), fake Chrome and Firefox windows for the lab sites, and a fake Google that only finds lab sites. The old Lab Home page moves to /home; the lab sites are unchanged; the real terminal still opens for the real tools. Only shubham-lab changes; the command is checked by hash.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-26.sh
-SCRIPT_SIZE=52184
-SCRIPT_SHA256=a71718a3885e97f80319fa50aba270f7f2fcf0f7e7b0dd5ca8fadb63aa53865c
+VERSION=27
+NOTES=Shubham OS 27: the FULL package update. From now on every update carries ALL 17 feature commands at their newest version plus the tools they need (ffmpeg, Tor, x11vnc, websockify, novnc, ClamAV, cloudflared, Google Chrome) - so jumping from any older version brings everything, nothing is missed. Includes the Carry disk list fix (Update 25) and the Lab fake OS desktop (Update 26). Every command is checked by hash.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-27.sh
+SCRIPT_SIZE=119465
+SCRIPT_SHA256=06edbaff57e88af8a4cb286e5f63e6b6e5a8e634844606d15e9f9f6cb5000cbb
