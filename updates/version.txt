@@ -1,5 +1,5 @@
-VERSION=28
-NOTES=Shubham OS 28: full package update (all 17 commands at newest version + tools). NEW: shubham-lab changed - the old local lab is gone; shubham-lab now opens the online Kali Terminal Simulator directly in Google Chrome, and first tells the user clearly that internet is a must (without internet it will not open) and checks the internet before opening.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-28.sh
-SCRIPT_SIZE=71888
-SCRIPT_SHA256=8e1442236ce8c8ae47ee21bce7bfbc16f1cf9b168bf7ee01af81c958abc2ee24
+VERSION=29
+NOTES=Shubham OS 29: full package update (all feature commands at newest version + tools). NEW: screen recording changed - the old shubham-record switch command is removed; recording is now two clear commands, shubham-start-recording and shubham-stop-recording, and stop finishes and checks the video file. Recordings use +faststart so they also play in Windows Media Player.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-29.sh
+SCRIPT_SIZE=74208
+SCRIPT_SHA256=8be262a6e712ad73f8879540924d548afed9ef87c65d6e83ec5ce39b504c0817
