@@ -1,5 +1,5 @@
-VERSION=25
-NOTES=Shubham OS 25: Carry My OS disk list fixed. shubham-carry now lists every real disk except the system disk, so a VMware virtual disk can be used to test Carry without a pen drive. CD drives (/dev/sr*) are never listed. Everything else in carry is unchanged: ISO finder, typed capital YES warning, dd copy, persistence part and settings file. Only shubham-carry changes; the command is checked by hash.
-SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-25.sh
-SCRIPT_SIZE=9339
-SCRIPT_SHA256=091d8b3b7afe74e2d21ce8ae09fe864524a7e23af102d51a0b714164dcc92234
+VERSION=26
+NOTES=Shubham OS 26: Practice Lab gets a fake OS desktop. Start Lab now opens a full fake Shubham OS desktop inside Chrome: icons, movable windows, a practice terminal whose commands answer like the real tools (nmap, gobuster, nikto, sqlmap, curl), fake Chrome and Firefox windows for the lab sites, and a fake Google that only finds lab sites. The old Lab Home page moves to /home; the lab sites are unchanged; the real terminal still opens for the real tools. Only shubham-lab changes; the command is checked by hash.
+SCRIPT=https://raw.githubusercontent.com/SHUBHAMKHALASH31/shubham-os-/main/updates/update-26.sh
+SCRIPT_SIZE=52184
+SCRIPT_SHA256=a71718a3885e97f80319fa50aba270f7f2fcf0f7e7b0dd5ca8fadb63aa53865c
